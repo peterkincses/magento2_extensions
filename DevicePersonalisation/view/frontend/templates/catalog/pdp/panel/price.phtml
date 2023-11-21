@@ -1,0 +1,36 @@
+<?php
+
+/**@var \BAT\DevicePersonalisation\ViewModel\Personalisation $viewModel */
+/**@var \BAT\DevicePersonalisation\ViewModel\Price $priceViewModel */
+
+$viewModel = $block->getData('view_model');
+$_product = $block->getProduct();
+$priceViewModel = $block->getData('price_view_model');
+$finalPersonalisationPrice = (is_null($viewModel->getFinalPersonalisationPrice()))? 0 : $viewModel->getFinalPersonalisationPrice();
+$totalPrice = $priceViewModel->getTotalPrice($_product, $finalPersonalisationPrice);
+?>
+<div id="pdp-personalisation-panel-price" class="page-title pdp-personalisation-price">
+    <span class="product-name heading"><?php echo $_product->getName() ?> + <?php echo __('Engraving') ?></span>
+    <div class="pdp-total-price">
+        <span><?php echo $priceViewModel->getFormattedPrice($totalPrice); ?></span>
+        <span class="icon-tooltip">i</span>
+        <div id="pdp-price-breakdown">
+            <table>
+                <tfoot>
+                <tr>
+                    <td><?php echo __('Total') ?></td>
+                    <td><?php echo $priceViewModel->getFormattedPrice($totalPrice); ?></td>
+                </tr>
+                </tfoot>
+                <tr>
+                    <td><?php echo $_product->getName() ?></td>
+                    <td><?php echo $priceViewModel->getFormattedPrice($_product->getFinalPrice()) ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo __('Engraving') ?></td>
+                    <td><?php echo $priceViewModel->getFormattedPrice($finalPersonalisationPrice) ?></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

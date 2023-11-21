@@ -1,0 +1,83 @@
+<?php
+// phpcs:disable Magento2.Templates.ThisInTemplate
+/* @var $block \Magento\Sales\Block\Adminhtml\Items\Column\Name */
+?>
+<?php if ($_item = $block->getItem()): ?>
+    <div id="order_item_<?= (int) $_item->getId() ?>_title"
+         class="product-title">
+        <?= $block->escapeHtml($_item->getName()) ?>
+    </div>
+    <div class="product-sku-block">
+        <span><?= $block->escapeHtml(__('SKU'))?>:</span> <?= /* @noEscape */ implode('<br />', $this->helper(\Magento\Catalog\Helper\Data::class)->splitSku($block->escapeHtml($block->getSku()))) ?>
+    </div>
+
+    <?php if ($block->getOrderOptions()): ?>
+        <dl class="item-options">
+            <?php foreach ($block->getOrderOptions() as $_option): ?>
+                <dt><?= $block->escapeHtml($_option['label']) ?>:</dt>
+                <dd>
+                    <?php if (isset($_option['custom_view']) && $_option['custom_view']): ?>
+                        <?= /* @noEscape */ $block->getCustomizedOptionValue($_option) ?>
+                    <?php else : ?>
+                        <?php $_option = $block->getFormattedOption((string) $_option['value']); ?>
+                        <?php $dots = 'dots' . uniqid(); ?>
+                        <?php $id = 'id' . uniqid(); ?>
+                        <?= $block->escapeHtml($_option['value'], ['a', 'br']) ?><?php if (isset($_option['remainder']) && $_option['remainder']) : ?><span id="<?= /* @noEscape */ $dots; ?>"> ...</span><span id="<?= /* @noEscape */ $id; ?>"><?= $block->escapeHtml($_option['remainder'], ['a']) ?></span>
+                            <script>
+                                require(['prototype'], function() {
+                                    $('<?= /* @noEscape */ $id; ?>').hide();
+                                    $('<?= /* @noEscape */ $id; ?>').up().observe('mouseover', function(){$('<?= /* @noEscape */ $id; ?>').show();});
+                                    $('<?= /* @noEscape */ $id; ?>').up().observe('mouseover', function(){$('<?= /* @noEscape */ $dots; ?>').hide();});
+                                    $('<?= /* @noEscape */ $id; ?>').up().observe('mouseout',  function(){$('<?= /* @noEscape */ $id; ?>').hide();});
+                                    $('<?= /* @noEscape */ $id; ?>').up().observe('mouseout',  function(){$('<?= /* @noEscape */ $dots; ?>').show();});
+                                });
+                            </script>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </dd>
+            <?php endforeach; ?>
+        </dl>
+    <?php endif; ?>
+    <?= $block->escapeHtml($_item->getDescription()) ?>
+    <?php $viewModel = $block->getViewModel(); ?>
+    <?php $psnItem = $viewModel->getPersonalisationInfo($block->getItem());?>
+    <?php if (!empty($psnItem)):?>
+        <dl class="personalise-wrapping">
+            <dt class="title"><?= $block->escapeHtml(__('Personalisation')) ?></dt>
+            <dl>
+                <dt class="title" style="font-weight: 700;"><?= $block->escapeHtml(__('Front')) ?></dt>
+                <dd class="content">
+                    <?php if ($psnItem['front_pattern']) : ?>
+                        <p><?= $block->escapeHtml(__('Pattern')).": ".$block->escapeHtml($viewModel->getFormated($psnItem['front_pattern'])) ?></p>
+                    <?php endif; ?>
+                    <?php if ($psnItem['front_font']) : ?>
+                        <p><?= $block->escapeHtml(__('Font')).": ".$block->escapeHtml($viewModel->getFormated($psnItem['front_font'])) ?></p>
+                    <?php endif; ?>
+                    <?php if ($psnItem['front_text']) : ?>
+                        <p><?= $block->escapeHtml(__('Text')).": ".$block->escapeHtml($viewModel->getFormated($psnItem['front_text'])) ?></p>
+                    <?php endif; ?>
+                    <?php if ($psnItem['front_orientation']): ?>
+                        <p><?= $block->escapeHtml(__('Orientation')).": ".$block->escapeHtml($viewModel->getFormated($psnItem['front_orientation'])) ?></p>
+                    <?php endif; ?>
+                    <?php if ($psnItem['front_icon']) : ?>
+                        <p><?= $block->escapeHtml(__('Icon')).": ".$block->escapeHtml($viewModel->getFormated($psnItem['front_icon'])) ?></p>
+                    <?php endif; ?>
+                </dd>
+            </dl>
+            <dl>
+                <dt class="title" style="font-weight: 700; margin-top: 10px; margin-bottom: 0; padding-bottom: 0;"><?= $block->escapeHtml(__('Back')) ?></dt>
+                <dd class="content">
+                    <?php if ($psnItem['back_font']) : ?>
+                        <p><?= $block->escapeHtml(__('Font')).": ".$block->escapeHtml($viewModel->getFormated($psnItem['back_font'])) ?></p>
+                    <?php endif; ?>
+                    <?php if ($psnItem['back_text']) : ?>
+                        <p><?= $block->escapeHtml(__('Text')).": ".$block->escapeHtml($viewModel->getFormated($psnItem['back_text'])) ?></p>
+                    <?php endif; ?>
+                    <?php if ($psnItem['back_orientation']) : ?>
+                        <p><?= $block->escapeHtml(__('Orientation')).": ".$block->escapeHtml($viewModel->getFormated($psnItem['back_orientation'])) ?></p>
+                    <?php endif; ?>
+                </dd>
+            </dl>
+        </dl>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="BAT\Yoti\Block\Customer\OldAccountVerifyNotice"
+                   name="bat_yoti_old_account_av_notice"
+                   before="-"
+                   template="BAT_Yoti::customer/old-account-av-notice.phtml"
+                   ifconfig="age_verification/yoti_old_account_av/enabled"
+                   cacheable="false">
+                <arguments>
+                    <argument name="cmsBlockId" xsi:type="string">yoti-old-not-approved-notice-order-success-page</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

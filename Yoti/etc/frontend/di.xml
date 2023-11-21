@@ -1,0 +1,17 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework/objectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="yoti_config_provider" xsi:type="object">BAT\Yoti\Model\Checkout\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="BAT\Yoti\Model\Checkout\ConfigProvider">
+        <arguments>
+            <argument name="blockId" xsi:type="string">yoti-old-not-approved-notice</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Checkout\Controller\Index\Index">
+        <plugin name="bat_yoti_av_checkout_restriction" type="BAT\Yoti\Plugin\RestrictCheckout"/>
+    </type>
+</config>

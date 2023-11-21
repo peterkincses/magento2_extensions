@@ -1,0 +1,52 @@
+<!--@subject {{trans "Welcome to %store_name" store_name=$store.getFrontendName()}} @-->
+<!--@vars {
+"var this.getUrl($store, 'customer/account/')":"Customer Account URL",
+"var ageVerificationHash":"Customer Age Verification Hash",
+"var customer.email":"Customer Email",
+"var customer.name":"Customer Name"
+} @-->
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "Hi %name," name=$customer.name}}</p>
+            <p>
+                {{trans "Welcome to %store_name!" store_name=$store.getFrontendName()}}
+            </p>
+            <p>
+                {{trans 'Once we\'ve verified your age, you\'ll be able to:'}}
+            </p>
+            <ul>
+                <li>
+                    {{trans 'Place your orders faster'}}
+                </li>
+                <li>
+                    {{trans 'Check the status of your orders'}}
+                </li>
+                <li>
+                    {{trans 'Change your delivery addresses'}}
+                </li>
+            </ul>
+            <p class="long-link">
+                {{trans 'If you have not yet verified your age, click on this link:'}}<br/>
+                {{trans '<a href="%age_verification_url">%age_verification_url</a>'
+                age_verification_url=$this.getUrl($store,'verification/customer/age/',[token:$ageVerificationHash,_nosid:1])
+                |raw}}
+            </p>
+            <p>
+                {{trans
+                'To connect, use the identifiers provided when ordering or by going to the <a href="%customer_url">My Account</a> page.'
+                customer_url=$this.getUrl($store,'customer/account/',[_nosid:1])
+                |raw}}
+            </p>
+            <br/>
+            <p>
+                {{trans "Thank you,"}}<br/>
+                {{trans "The %store_name team" store_name=$store.getFrontendName()}}
+            </p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

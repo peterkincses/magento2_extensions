@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="psn_fonts" resource="default" engine="innodb" comment="Personalisation Fonts Table">
+        <column xsi:type="int" name="font_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Font Identifier"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Font Name (default)" />
+        <column xsi:type="varchar" name="font_file" nullable="false" length="255" comment="Font File" />
+        <column xsi:type="varchar" name="preview_text" nullable="false" comment="Preview Text" />
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Status"/>
+        <column xsi:type="varchar" name="font_size" nullable="true" comment="Font Size" length="100"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="font_id" />
+        </constraint>
+    </table>
+    <table name="psn_fonts_overrides" resource="default" engine="innodb" comment="Personalisation Fonts Overrides Table">
+        <column xsi:type="int" name="font_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Font ID"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Store View ID"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="255" comment="Font Name" />
+        <column xsi:type="varchar" name="preview_text" nullable="true" comment="Preview Text" />
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="true" identity="false" default="0" comment="Status"/>
+        <column xsi:type="varchar" name="font_size" nullable="true" comment="Font Size" length="100"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="font_id" />
+            <column name="store_id" />
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="PSN_FONTS_FONT_ID_PSN_FONTS_OVERRIDES_FONT_ID" table="psn_fonts_overrides"
+                    column="font_id" referenceTable="psn_fonts" referenceColumn="font_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="STORE_STORE_ID_PSN_FONTS_OVERRIDES_STORE_ID" table="psn_fonts_overrides"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+    </table>
+    <table name="psn_patterns" resource="default" engine="innodb" comment="Personalisation Patterns Table">
+        <column xsi:type="int" name="pattern_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Pattern Identifier"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Pattern Name (default)" />
+        <column xsi:type="varchar" name="image" nullable="false" length="255" comment="Image" />
+        <column xsi:type="varchar" name="thumbnail" nullable="false" length="255" comment="Thumbnail" />
+        <column xsi:type="varchar" name="category_name" nullable="true" length="255" comment="Category Name" />
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Status"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="pattern_id" />
+        </constraint>
+    </table>
+    <table name="psn_patterns_overrides" resource="default" engine="innodb" comment="Personalisation Patterns Overrides Table">
+        <column xsi:type="int" name="pattern_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Pattern Id"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Store View Id"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="255" comment="Font Name" />
+        <column xsi:type="varchar" name="category_name" nullable="true" length="255" comment="Category Name" />
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="true" identity="false" default="0" comment="Status"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="pattern_id" />
+            <column name="store_id" />
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="PSN_PATTERNS_PATTERN_ID_PSN_PATTERNS_OVERRIDES_PATTERN_ID" table="psn_patterns_overrides"
+                    column="pattern_id" referenceTable="psn_patterns" referenceColumn="pattern_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="STORE_STORE_ID_PSN_PATTERNS_OVERRIDES_STORE_ID" table="psn_patterns_overrides"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+    </table>
+    <table name="psn_icons" resource="default" engine="innodb" comment="Personalisation Icons Table">
+        <column xsi:type="int" name="icon_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Icon Identifier" />
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Icon Name" />
+        <column xsi:type="varchar" name="image" nullable="false" length="255" comment="Image" />
+        <column xsi:type="varchar" name="thumbnail" nullable="false" length="255" comment="Thumbnail" />
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Status"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="icon_id" />
+        </constraint>
+    </table>
+    <table name="psn_icons_overrides" resource="default" engine="innodb" comment="Personalisation Icons Overrides Table">
+        <column xsi:type="int" name="icon_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Icon Id"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Store Id"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="255" comment="Icon Name" />
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="true" identity="false" default="0" comment="Status"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="icon_id" />
+            <column name="store_id" />
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="STORE_STORE_ID_PSN_ICONS_OVERRIDES_STORE_ID" table="psn_icons_overrides"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="PSN_ICONS_ICON_ID_PSN_ICONS_OVERRIDES_ICON_ID" table="psn_icons_overrides"
+                    column="icon_id" referenceTable="psn_icons" referenceColumn="icon_id" onDelete="CASCADE"/>
+    </table>
+    <table name="psn_restricted_words" resource="default" engine="innodb" comment="Personalisation Resctricted Words Table">
+        <column xsi:type="int" name="word_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Word Id"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Store View Id"/>
+        <column xsi:type="varchar" name="restricted_word" nullable="false" length="255" comment="Restricted Word" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="word_id" />
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="STORE_STORE_ID_PSN_RESTRICTED_WORDS_STORE_ID" table="psn_restricted_words"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="PSN_RESTRICTED_WORDS_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="psn_item" resource="default" engine="innodb" comment="Personalisation Item Table">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="int" name="order_item_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Order Item ID"/>
+        <column xsi:type="int" name="quote_item_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Quote Item ID"/>
+        <column xsi:type="varchar" name="front_font" nullable="false" length="255" comment="Front Font Name" />
+        <column xsi:type="varchar" name="front_text" nullable="false" length="255" comment="Font Text" />
+        <column xsi:type="varchar" name="front_orientation" nullable="false" length="255" comment="Font Orientation" />
+        <column xsi:type="varchar" name="front_pattern" nullable="false" length="255" comment="Front Font Name" />
+        <column xsi:type="varchar" name="front_icon" nullable="false" length="255" comment="Front Icon Name" />
+        <column xsi:type="varchar" name="back_font" nullable="false" length="255" comment="Back Font Name" />
+        <column xsi:type="varchar" name="back_text" nullable="false" length="255" comment="Back Text" />
+        <column xsi:type="varchar" name="back_orientation" nullable="false" length="255" comment="Back Orientation" />
+        <column xsi:type="decimal" name="personalisation_price" scale="4" precision="12" nullable="false" comment="Personalisation Price"/>
+        <column xsi:type="decimal" name="personalisation_tax" scale="4" precision="12" nullable="false" comment="Personalisation Tax"/>
+        <column xsi:type="boolean" name="personalisation_is_free" nullable="false" default="false" comment="Free Personalisation"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id" />
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SALES_ORDER_ITEM_ITEM_ID_PSN_ITEM_ORDER_ITEM_ID" table="psn_item"
+                    column="order_item_id" referenceTable="sales_order_item" referenceColumn="item_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="QUOTE_ITEM_ITEM_ID_PSN_ITEM_QUOTE_ITEM_ID" table="psn_item"
+                    column="quote_item_id" referenceTable="quote_item" referenceColumn="item_id" onDelete="CASCADE"/>
+    </table>
+    <table name="salesrule" resource="default" engine="innodb" comment="Salesrule">
+        <column xsi:type="smallint" name="psn_exclude_from_discount" padding="6" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Exclude Personalisation Price From Discount"/>
+    </table>
+    <table name="shipping_matrixrates" resource="default">
+        <column xsi:type="boolean" name="exclude_personalisation" nullable="true" default="false" comment="Exclude for PSN basket" />
+    </table>
+</schema>

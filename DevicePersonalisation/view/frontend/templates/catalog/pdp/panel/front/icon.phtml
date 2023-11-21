@@ -1,0 +1,43 @@
+<?php
+/**@var \BAT\DevicePersonalisation\ViewModel\Icons $viewModel*/
+$viewModel = $block->getData('view_model');
+$icons = $viewModel->getIcons(); ?>
+
+<div id="front-icon-content" class="front-option-content">
+    <div class="action-toolbar">
+        <a href="#" class="front-option-back with-arrow left">
+            <?= __('Back') ?>
+        </a>
+    </div>
+
+    <div data-role="title" class="tab-content-title">
+        <?= __('Choose the mini icon you like') ?>
+    </div>
+
+    <div class="personalisation-options">
+        <?php foreach($icons as $key => $icon):?>
+            <div class="option col-3 personalisation-custom-radio">
+                <input type="radio" name="personalisation_front_icon"
+                       id="front_icon_<?= $key ?>"
+                       value="<?= $block->escapeHtml($icon['name']) ?>"
+                       data-input-label="<?= __('Icon') ?>"
+                       data-save-button="#front-icon-save"
+                       data-preview-image="<?= $icon['image']?>"
+                       data-preview-target="front-image-icon" />
+                <label for="front_icon_<?= $key ?>">
+                    <span class="img-wrap">
+                        <img src="<?= $icon['thumbnail']?>" />
+                    </span>
+                    <span class="option-title"><?= __($icon['name'])?></span>
+                </label>
+            </div>
+        <?php endforeach ?>
+    </div>
+
+    <div class="action-toolbar">
+        <button id="front-icon-save" class="action primary tab-toggle save" data-target-tab="1" disabled>
+            <?= __('Add and continue') ?>
+        </button>
+    </div>
+
+</div>

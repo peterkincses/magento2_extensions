@@ -1,0 +1,51 @@
+<?php
+/**@var \BAT\DevicePersonalisation\ViewModel\Patterns $viewModel*/
+$viewModel = $block->getData('view_model');
+$patterns = $viewModel->getPatterns();
+$categories = $viewModel->getCategories($patterns);
+?>
+
+<div id="front-pattern-content" class="front-option-content">
+    <div class="action-toolbar">
+        <a href="#" class="front-option-back with-arrow left"><?= __('Back') ?></a>
+    </div>
+
+    <div data-role="title" class="tab-content-title">
+        <?= __('Choose the pattern you like')?>
+    </div>
+
+    <?php if(!empty($categories)): ?>
+    <ul class="personalisation-option-filters">
+        <?php foreach($categories as $category):?>
+        <li data-category="<?= strtolower($category)?>"><?= __($category)?></li>
+        <?php endforeach ?>
+    </ul>
+    <?php endif; ?>
+
+    <div class="personalisation-options">
+        <?php foreach($patterns as $key => $pattern):?>
+            <div class="option col-3 personalisation-custom-radio" data-category="<?= strtolower($pattern['category_name']) ?>">
+                <input type="radio"
+                       name="personalisation_front_pattern"
+                       id="front_pattern_<?= $key ?>"
+                       value="<?= $block->escapeHtml($pattern['name']) ?>"
+                       data-input-label="<?= __('Pattern') ?>"
+                       data-save-button="#front-pattern-save"
+                       data-preview-image="<?= $pattern['image']?>"
+                       data-preview-target="front-image-pattern"/>
+                <label for="front_pattern_<?= $key ?>">
+                    <span class="img-wrap">
+                        <img src="<?= $pattern['thumbnail'] ?>" />
+                    </span>
+                    <span class="option-title"><?= __($pattern['name']) ?></span>
+                </label>
+            </div>
+        <?php endforeach ?>
+    </div>
+
+    <div class="action-toolbar">
+        <button id="front-pattern-save" class="action primary tab-toggle save" data-target-tab="1" disabled>
+            <?= __('Add and continue') ?>
+        </button>
+    </div>
+</div>

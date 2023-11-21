@@ -1,0 +1,20 @@
+{
+    "name": "bat/module-yoti",
+    "description": "",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "require": {
+        "mageplaza/module-customer-approval": "^1.0.3",
+        "yoti/yoti-php-sdk": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "BAT\\Yoti\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

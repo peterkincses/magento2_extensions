@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">psn_restricted_words_form.psn_restricted_words_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="BAT\DevicePersonalisation\Block\Adminhtml\RestrictedWords\Edit\SaveButton"/>
+            <button name="delete" class="BAT\DevicePersonalisation\Block\Adminhtml\RestrictedWords\Edit\DeleteButton"/>
+            <button name="back" class="BAT\DevicePersonalisation\Block\Adminhtml\RestrictedWords\Edit\BackButton"/>
+        </buttons>
+        <namespace>psn_restricted_words_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>psn_restricted_words_form.psn_restricted_words_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="psn_restricted_words_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="bat_personalisation/restrictedwords/save"/>
+        </settings>
+        <dataProvider class="BAT\DevicePersonalisation\Model\PsnRestrictedWords\DataProvider" name="psn_restricted_words_form_data_source">
+            <settings>
+                <requestFieldName>word_id</requestFieldName>
+                <primaryFieldName>word_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="psn_restricted_words">
+        <settings>
+            <label/>
+        </settings>
+        <field name="word_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">psn_restricted_words</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>word_id</dataScope>
+            </settings>
+        </field>
+        <field name="restricted_word" sortOrder="10" formElement="input">
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Restricted Word</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="store_id" sortOrder="40" formElement="select">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Store</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Store\Ui\Component\Listing\Column\Store\Options"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

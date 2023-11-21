@@ -1,0 +1,49 @@
+<?php
+/** @var BAT\Yoti\ViewModel\AgeProvider $ageDataProvider */
+$ageDataProvider = $block->getAgeDataProvider();
+$doubleOptIn = ($ageDataProvider->isDoubleOptIn() != "") ? $ageDataProvider->isDoubleOptIn() : false;
+$storeName = ($ageDataProvider->getStoreName() != "") ? $ageDataProvider->getStoreName() : __('The company');
+?>
+<div class="yoti-block-wrapper hidden">
+    <div class="yoti-registration-browser-error message error">
+        <div>
+            <p><?= __('To create an account, we need to verify your age.') ?>
+                <?= __('To use our age verification service, we recommend that you use Chrome or Safari')?>
+            </p>
+            <p><?= __('Thank you') ?></p>
+        </div>
+    </div>
+    <div id="yoti-registration-modal" data-mage-init='{"BAT_Yoti/js/yoti-registration-modal":{"doubleOptIn": <?= $doubleOptIn ?>}}'>
+        <div class="yoti-logo-wrap desktop-only">
+            <img src="<?= $block->getViewFileUrl('images/logo.svg')?>" alt="<?= __('Site Logo')?>" width="60" />
+        </div>
+        <p class="yoti-modify-registration desktop-only">
+            <?= __('Modify your registration details') ?>
+        </p>
+        <div class="yoti-modal-header">
+            <h3 class="modal-title">
+                <span class="first-name"></span>
+                <?= __(', %1 undertakes to sell its products only to adults.', $storeName) ?>
+            </h3>
+            <p>
+                <?= __('We therefore have to be sure that you are over the age of %1 to continue shopping on our site, so your photo will be analyzed to identify your age.', $age = 18) ?>
+            </p>
+        </div>
+        <div class="yoti-modal-content">
+            <h3><?= __('Verify your age with a selfie') ?></h3>
+            <p><?= __('Instant response') ?></p>
+            <p>
+                <small><?= __('Your computer or smartphone must have a camera') ?></small>
+            </p>
+            <div class="actions">
+                <button class="action secondary yoti-start"><?= __('Start') ?></button>
+                <p>
+                    <a href="https://google.com"><?= __('I\'m not 18 years old') ?></a>
+                </p>
+            </div>
+        </div>
+        <p class="disclaimer">
+            <small><?= __('Documents and images will be automatically deleted after verification') ?></small>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="BAT_DevicePersonalisation::config" title="BAT Device Personalisation"/>
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Magento_Catalog::catalog">
+                    <resource id="BAT_DevicePersonalisation::personalisation" title="Personalisation" translate="title" sortOrder="10">
+                        <resource id="BAT_DevicePersonalisation::pattern" title="Patterns" translate="title" sortOrder="10">
+                            <resource id="BAT_DevicePersonalisation::pattern_create" title="Patterns - Create" sortOrder="10"/>
+                            <resource id="BAT_DevicePersonalisation::pattern_edit" title="Patterns - Edit" sortOrder="20"/>
+                            <resource id="BAT_DevicePersonalisation::pattern_delete" title="Patterns - Delete" sortOrder="30"/>
+                        </resource>
+                        <resource id="BAT_DevicePersonalisation::font" title="Fonts" translate="title" sortOrder="20">
+                            <resource id="BAT_DevicePersonalisation::font_create" title="Font - create" translate="title" sortOrder="30" />
+                            <resource id="BAT_DevicePersonalisation::font_delete" title="Font - Delete" translate="title" sortOrder="100" />
+                            <resource id="BAT_DevicePersonalisation::font_edit" title="Font - Edit" translate="title" sortOrder="150"/>
+                        </resource>
+                        <resource id="BAT_DevicePersonalisation::icon" title="Icon" translate="title" sortOrder="20">
+                            <resource id="BAT_DevicePersonalisation::icon_create" title="Icon - create" translate="title" sortOrder="30" />
+                            <resource id="BAT_DevicePersonalisation::icon_delete" title="Icon - Delete" translate="title" sortOrder="100" />
+                            <resource id="BAT_DevicePersonalisation::icon_edit" title="Icon - Edit" translate="title" sortOrder="150"/>
+                        </resource>
+                        <resource id="BAT_DevicePersonalisation::restricted_word" title="Restricted Words" translate="title" sortOrder="20">
+                            <resource id="BAT_DevicePersonalisation::restricted_word_create" title="Restricted Words - Create" translate="title" sortOrder="30" />
+                            <resource id="BAT_DevicePersonalisation::restricted_word_edit" title="Restricted Words - Edit" translate="title" sortOrder="40" />
+                            <resource id="BAT_DevicePersonalisation::restricted_word_delete" title="Restricted Words - Delete" translate="title" sortOrder="50" />
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Magento_Reports::report">
+                    <resource id="Magento_Reports::salesroot">
+                        <resource id="BAT_DevicePersonalisation::psn_report" title="Personalisation Sales Report"
+                                  translate="title" sortOrder="56"/>
+                        <resource id="BAT_DevicePersonalisation::psn_mxreport" title="Engraving Sales Report"
+                                  translate="title" sortOrder="57"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

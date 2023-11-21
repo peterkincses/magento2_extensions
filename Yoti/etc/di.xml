@@ -1,0 +1,35 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework/objectManager/etc/config.xsd">
+    <virtualType name="BAT\Yoti\Model\Session\Storage" type="Magento\Framework\Session\Storage">
+        <arguments>
+            <argument name="namespace" xsi:type="string">yoti</argument>
+        </arguments>
+    </virtualType>
+    <type name="BAT\Yoti\Model\Session">
+        <arguments>
+            <argument name="storage" xsi:type="object">BAT\Yoti\Model\Session\Storage</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Customer\Controller\Account\CreatePost">
+        <plugin name="bat-register-account-create-around-yoti" type="BAT\Yoti\Plugin\CustomerCreatePost"/>
+    </type>
+    <!-- this needs to run after the mageplaza customer confirm plugin -->
+    <type name="Magento\Customer\Controller\Account\Confirm">
+        <plugin name="bat-register-account-confirm-after-yoti"
+                type="BAT\Yoti\Plugin\CustomerConfirm"
+                sortOrder="2"/>
+    </type>
+    <type name="Mageplaza\CustomerApproval\Helper\Data">
+        <plugin name="bat_yoti_send_mail_around" type="BAT\Yoti\Plugin\SendMailApproval" />
+        <plugin name="bat_yoti_unsubscribe_notapproved" type="BAT\Yoti\Plugin\UnsubscribeNotApproved" />
+        <plugin name="bat_yoti_pending_verification" type="BAT\Yoti\Plugin\PendingYotiVerification" />
+    </type>
+    <type name="Magento\Customer\Api\CustomerRepositoryInterface">
+        <plugin name="update_newsletter_subscription_on_customer_update_extend" disabled="true"/>
+        <plugin name="bat_yoti_update_newsletter_subscription_on_customer_update"
+                type="BAT\Yoti\Plugin\UnsubscribeCustomerPlugin"/>
+    </type>
+    <type name="Magento\Customer\Model\AccountManagement">
+        <plugin name="mpcustomerapproval_customer_authenticated" disabled="true" />
+        <plugin name="bat_customer_authenticated" type="BAT\Yoti\Plugin\CustomerAuthenticated" />
+    </type>
+</config>

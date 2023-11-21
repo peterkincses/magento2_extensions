@@ -1,0 +1,528 @@
+@yoti_error_color: #c73420;
+//
+//  Common
+//
+& when (@media-common = true) {
+  @keyframes rota {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .verification-customer-age {
+    #liveagent-offline,
+    .footer-mobile-floating-nav {
+      display: none;
+    }
+  }
+  
+  .yoti-block-wrapper.hidden {
+    display: none;
+  }
+
+  .verification-customer-success,
+  .verification-customer-iframesuccess {
+    .yoti-wrap {
+      .actions {
+        .hidden {
+          display: none;
+        }
+      }
+      .page-title {
+        max-width: 100%;
+      }
+    }
+  }
+
+  .yoti-logo-wrap {
+    width: 100%;
+    text-align: center;
+    margin: 20px auto;
+    img {
+      max-width: 40px;
+    }
+  }
+
+  .yoti-wrap {
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: @color-gray92;
+    .lib-vendor-prefix-border-radius(8px);
+    max-width: 650px;
+    margin: 0 auto;
+    * {
+      box-sizing: border-box;
+    }
+
+    .hidden,
+    .action.primary.hidden {
+      display: none;
+    }
+
+    h1,
+    .page-title {
+      max-width: 400px;
+      margin: 0 auto 20px;
+      font-size: 32px;
+    }
+
+    .page-title {
+      &:extend(h1);
+    }
+
+    .section-title {
+      width: 100%;
+      margin-top: 16px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      color: @color-gray20;
+    }
+
+    .instructions-list {
+      .lib-vendor-prefix-display(flex);
+      margin: 0 0 20px;
+      text-align: center;
+      justify-content: space-between;
+      .lib-vendor-box-align(center);
+      .lib-vendor-prefix-flex-wrap(wrap);
+      border-bottom: 1px solid @color-gray92;
+    }
+
+    .list-item {
+      .lib-vendor-prefix-display(flex);
+      .lib-vendor-prefix-flex-direction(column);
+      .lib-vendor-box-align(center);
+      font-size: 12px;
+      line-height: 14px;
+      width: 33.33%;
+      align-self: stretch;
+
+      img {
+        width: 41px;
+        height: 41px;
+        margin-bottom: 5px;
+      }
+
+      p {
+        margin: 10px 0;
+        max-width: 125px;
+      }
+    }
+
+    #prepare-video {
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+
+    .timer-wrapper {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .prepare-video__timer {
+      z-index: 50;
+      animation: rota 1s linear infinite;
+    }
+
+    .yoti-camera {
+      text-align: left;
+      .col {
+        &:first-of-type {
+          p {
+            &:first-of-type {
+              margin-bottom: 0;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+
+    canvas,
+    video {
+      display: inline-block;
+      vertical-align: baseline;
+      width: 100%;
+    }
+
+    canvas {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-div {
+      position: fixed;
+      background: @color-black;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      .back-to-intro {
+        margin: 20px;
+        z-index: 901;
+        position: fixed;
+        padding: 3px 10px;
+        .lib-vendor-prefix-border-radius(5px);
+        img {
+          filter: invert(1);
+          width: 20px;
+        }
+      }
+    }
+
+    .video__wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      margin-bottom: 20px;
+      video {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        overflow: scroll;
+        object-fit: cover;
+        z-index: @z-index-9;
+      }
+    }
+
+    .camera-buttons {
+      position: absolute;
+      width: 100%;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: @z-index-9;
+      .restart,
+      .submit-picture {
+        display: none;
+      }
+      .take-picture {
+        float: none;
+      }
+    }
+
+    &.show-preview {
+      .video__wrapper {
+        margin-bottom: 20px;
+        padding-bottom: 55%;
+        video {
+          display: none;
+        }
+        canvas {
+          display: block;
+          position: absolute;
+        }
+      }
+      .camera-buttons {
+        position: static;
+        text-align: left;
+        .restart,
+        .submit-picture {
+          display: inline-block;
+        }
+        .submit-picture {
+          float: right;
+        }
+        .take-picture {
+          display: none;
+        }
+      }
+    }
+
+    .yoti-result {
+      .restart {
+        margin-top: 10px;
+      }
+    }
+
+    .result-success {
+      margin-top: 48px;
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
+    }
+
+    .finish-registration {
+      margin-bottom: 10px;
+    }
+
+    .hint {
+      display: block;
+      margin: 4px auto 0 auto;
+      width: 279px;
+      height: 28px;
+      font-size: 12px;
+      color: @color-gray43;
+    }
+
+    .face-not-found {
+      width: 100%;
+      height: 24px;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1;
+      letter-spacing: normal;
+      text-align: center;
+      color: @color-gray43;
+    }
+
+    .error-wrapper {
+      width: 100%;
+      padding: 10px;
+    }
+
+    .warning-con-wrapper {
+      width: 100%;
+    }
+
+    .warning-icon {
+      display: block;
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+
+    #error-message {
+      margin: 20px 0 0;
+      color: @yoti_error_color;
+    }
+    #error-hint {
+      margin-bottom: 20px;
+    }
+  }
+
+  .yoti-inner-wrap {
+    background: @color-white;
+    padding: 10px;
+  }
+
+  .yoti-upload-documents {
+    &.loading {
+      img {
+        display: inline-block;
+      }
+    }
+    img {
+      display: none;
+    }
+  }
+
+  .yoti-docscan-ajax-error {
+    .idscan-message {
+      display: none;
+    }
+  }
+
+  .yoti-id-scan-notice {
+    &.status-3 {
+      button {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .yoti-id-scan-error.message.error {
+    border: 0;
+    margin: 0;
+    &:empty {
+      display: none;
+    }
+  }
+
+  .yoti-security-notice {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    text-align: center;
+    color: @color-gray60;
+  }
+
+  .yoti-disclaimer {
+    text-align: center;
+    color: @color-gray60;
+    span {
+      margin-top: 5px;
+      display: block;
+    }
+  }
+
+  .yoti-orientation-error {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: @color-white;
+    padding: 10px;
+
+    .please-turn-your-dev {
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.13;
+      letter-spacing: normal;
+      color: @color-gray20;
+      .lib-vendor-prefix-display(flex);
+      .lib-vendor-prefix-flex-direction(column);
+      justify-content: left;
+      text-align: left;
+    }
+  }
+
+  .dark-theme {
+    .yoti-registration-modal {
+      .yoti-modal-header,
+      .yoti-modal-content {
+        background: @color-gray20;
+      }
+    }
+  }
+
+  .yoti-registration-modal {
+    .modal-inner-wrap {
+      max-width: 670px;
+    }
+    .yoti-logo-wrap {
+      margin-top: 0;
+    }
+    .yoti-modal-header,
+    .yoti-modal-content {
+      background: @color-gray91;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .modal-title {
+      border: 0;
+      margin-top: 0;
+    }
+    .yoti-modal-content {
+      margin-bottom: 10px;
+
+      h3 {
+        margin-top: 0;
+      }
+      .actions {
+        button {
+          margin-bottom: 10px;
+        }
+        p {
+          margin: 0;
+          a {
+            font-size: 13px;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+    .disclaimer {
+      text-align: left;
+      margin-bottom: 0;
+    }
+  }
+
+  .customer-account-create {
+    .yoti-registration-browser-error.message {
+      > div {
+        position: relative;
+        padding-left: 35px;
+        text-align: left;
+        line-height: 160%;
+        &:before {
+          position: absolute;
+          left: 0;
+          top: 11px;
+          width: 25px;
+        }
+        p {
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+      }
+      p {
+        color: @message-error__color;
+      }
+    }
+  }
+
+  @media screen and (orientation: landscape) {
+    .verification-customer-age.mobile-tablet {
+      .column.main {
+        > div {
+          display: none;
+          &.yoti-orientation-error {
+            .lib-vendor-prefix-display(flex);
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+  .yoti-wrap {
+    .video-div {
+      position: static;
+      background: none;
+      .back-to-intro {
+        .lib-vendor-prefix-display(inline-flex);
+        position: static;
+        margin: 0 0 20px;
+        align-items: center;
+        span {
+          margin-left: 10px;
+        }
+      }
+    }
+    .video__wrapper {
+      padding-bottom: 55%;
+      height: auto;
+      video {
+        position: absolute;
+      }
+    }
+    .camera-buttons {
+      position: static;
+    }
+  }
+}
+
+//
+//  Tablet and up
+//
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .yoti-inner-wrap {
+    padding: 20px;
+  }
+  .yoti-logo-wrap {
+    img {
+      max-width: 75px;
+    }
+  }
+  .yoti-registration-modal {
+    text-align: center;
+    .yoti-modify-registration {
+      text-align: left;
+      cursor: pointer;
+      width: 100%;
+      .lib-icon-font(
+        @_icon-font-content: @icon-prev,
+        @_icon-font-size: 38px,
+        @_icon-font-line-height: 37px,
+        @_icon-font-position: before
+      );
+    }
+  }
+}

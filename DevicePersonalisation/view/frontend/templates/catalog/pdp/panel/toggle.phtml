@@ -1,0 +1,27 @@
+<?php
+
+/**@var \BAT\DevicePersonalisation\ViewModel\Personalisation $viewModel */
+
+$viewModel = $block->getData('view_model');
+$formattedRegularPrice = $viewModel->getPersonalisationPrice(true, true);
+$formattedSpecialPrice = $viewModel->getPersonalisationSpecialPrice(true, true);
+$displaySpecialPrice = (float) $viewModel->getPersonalisationPrice() > 0 && (float) $viewModel->getPersonalisationSpecialPrice() ? true : false;
+?>
+<div class="pdp-personalisation-toggle" data-role="pdp-personalisation-toggle">
+    <div class="img-wrap">
+        <img src="<?= $block->getViewFileUrl('BAT_DevicePersonalisation::images/option-text.png') ?>" />
+    </div>
+    <div class="text">
+        <!-- todo: get dynamic product name -->
+        <p><?= __('Personalise your device')?></p>
+        <p><?= __('Add a pattern, icon or text to your device')?></p>
+    </div>
+    <div class="price">
+        <?php if($displaySpecialPrice):?>
+        <span class="regular-price"><?= $formattedRegularPrice ?></span>
+        <span class="special-price"><?= $formattedSpecialPrice ?></span>
+        <?php else: ?>
+        <?= $formattedRegularPrice ?>
+        <?php endif ?>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+  .product.media {
+    position: relative;
+    .personalisation-preview {
+      position: absolute;
+      z-index: @z-index-1;
+      left: 0.5%;
+      right: 0;
+      top: 15%;
+      margin-left: auto;
+      margin-right: auto;
+      width: 15%;
+      pointer-events: none;
+      &.text {
+        text-align: center;
+        font-size: 12px;
+        color: @color-white;
+        top: 30%;
+        white-space: nowrap;
+        letter-spacing: 1px;
+        &.back {
+          top: 32%;
+        }
+      }
+
+      &[data-direction="vertical"] {
+        transform: rotate(-90deg);
+        margin-top: 2%;
+        width: 30%;
+      }
+
+      img {
+        pointer-events: none;
+        width: 100%;
+        filter: invert(1);
+      }
+    }
+  }
+}
+
+//
+//  640 up
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+  .product.media {
+    .personalisation-preview {
+      &.text {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+//
+//  Tablet
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .product.media {
+    .personalisation-preview {
+      &.text {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+//between 640x768: 20px
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+  .product.media {
+    .personalisation-preview {
+      &.text {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+
+//
+//  Tablet
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+  .product.media {
+    position: relative;
+    .personalisation-preview {
+      &.text {
+        font-size: 26px;
+      }
+    }
+  }
+}
+
+//
+//  Below 481px
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+  .product.media {
+    .personalisation-preview {
+      width: 13%;
+    }
+  }
+}

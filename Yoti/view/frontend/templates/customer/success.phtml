@@ -1,0 +1,28 @@
+<div class="yoti-logo-wrap">
+    <img src="<?= $block->getViewFileUrl('images/logo.svg')?>" alt="<?= __('Site Logo')?>" width="75" />
+</div>
+
+<div class="yoti-wrap" data-mage-init='{"BAT_Yoti/js/yoti-success": {}}'>
+    <div class="yoti-inner-wrap">
+        <section id="result">
+            <div class="container">
+                <h1 class="page-title"><?= __('Welcome <span></span>!')?></h1>
+                <p>
+                    <?= __('Your account has been verified. You can now order on our site.') ?>
+                </p>
+            </div>
+            <div class="actions">
+                <a href="<?= $block->getUrl('')?>"
+                   class="action primary home hidden"
+                   title="<?= $block->escapeHtml(__('Continue to our site'))?>">
+                    <span><?= $block->escapeHtml(__('Continue to our site'))?></span>
+                </a>
+                <a href="<?= $block->getUrl('checkout/cart')?>"
+                   class="action primary checkout hidden"
+                   title="<?= $block->escapeHtml(__('Finish the checkout')) ?>">
+                    <span><?= $block->escapeHtml(__('Finish the checkout')) ?></span>
+                </a>
+            </div>
+        </section>
+    </div>
+</div>

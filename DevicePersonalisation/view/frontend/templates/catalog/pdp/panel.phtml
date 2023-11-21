@@ -1,0 +1,71 @@
+<?php
+
+/**@var \BAT\DevicePersonalisation\ViewModel\Personalisation $viewModel */
+
+$_product = $block->getProduct();
+$viewModel = $block->getData('view_model');
+$restrictionViewModel = $block->getData('restriction_view_model');
+$storeCode = $viewModel->getStoreCode();
+?>
+
+<?php if($_product->getPsnIsPersonalisable()):?>
+
+    <input name="is_product_personalised" value="0" type="hidden" />
+
+    <?= $block->getChildHtml('pdp.personalisation.panel.toggle') ?>
+
+    <?= $block->getChildHtml('pdp.personalisation.panel.price') ?>
+
+    <div id="pdp-personalisation-tabs" class="pdp-personalisation-tabs not-yet-personalised <?= $storeCode ?>" data-content-type="tabs">
+        <ul role="tablist" class="tabs-navigation" data-element="navigation">
+            <li role="tab" data-element="headers" class="tab-header" aria-selected="true" data-preview-area="front">
+                <a href="#tab-front" class="tab-title" role="presentation" tabindex="-1">
+                    <span class="tab-title"><span class="step">1.</span><?= __('Front') ?></span>
+                </a>
+            </li>
+            <li role="tab" data-element="headers" class="tab-header" data-preview-area="back">
+                <a href="#tab-back" class="tab-title" role="presentation" tabindex="-1">
+                    <span class="tab-title"><span class="step">2.</span><?= __('Back view') ?></span>
+                </a>
+            </li>
+            <li role="tab" data-element="headers" class="tab-header">
+                <a href="#tab-summary" class="tab-title" role="presentation" tabindex="-1">
+                    <span class="tab-title"><span class="step">3.</span><?= __('The summary') ?></span>
+                </a>
+            </li>
+        </ul>
+        <div class="tabs-content" data-element="content">
+            <div data-content-type="tab-item" id="tab-front">
+                <?= $block->getChildHtml('pdp.personalisation.panel.front') ?>
+            </div>
+            <div data-content-type="tab-item" id="tab-back">
+                <?= $block->getChildHtml('pdp.personalisation.panel.back') ?>
+            </div>
+            <div data-content-type="tab-item" id="tab-summary">
+                <?= $block->getChildHtml('pdp.personalisation.panel.summary') ?>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/x-magento-init">
+    {
+        "#pdp-personalisation-tabs": {
+            "BAT_DevicePersonalisation/js/pdp-personalisation": {
+               "previewTextPositionFrontTop":  "<?= $_product->getPsnTextFrontTopCoord() ?>",
+               "previewTextPositionFrontLeft":  "<?= $_product->getPsnTextFrontLeftCoord() ?>",
+               "previewTextPositionBackTop":  "<?= $_product->getPsnTextBackTopCoord() ?>",
+               "previewTextPositionBackLeft":  "<?= $_product->getPsnTextBackLeftCoord() ?>",
+               "previewImagePosition": "<?= $_product->getPsnImageCoordinates() ?>",
+               "currency":             "<?= $viewModel->getCurrencySymbol() ?>",
+               "psnPrice":             "<?= $viewModel->getPersonalisationSpecialPrice() ? $viewModel->getPersonalisationSpecialPrice() : $viewModel->getPersonalisationPrice() ?>"
+            }
+        },
+        "*": {
+           "BAT_DevicePersonalisation/js/psn-input-validation": {
+               "restrictedWords":  <?= $restrictionViewModel->getRestrictedWords() ?>,
+               "psnRestrictedCharacters":  "<?= $viewModel->getValidationRegex() ?>"
+           }
+        }
+    }
+    </script>
+<?php endif ?>

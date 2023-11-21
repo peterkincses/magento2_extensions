@@ -1,0 +1,40 @@
+<?php
+$psnData = $this->getPsnInfoData();
+?>
+
+<?php if($psnData):?>
+    <div class="psn-options" data-mage-init='{
+        "collapsible":{
+            "openedState": "active",
+            "saveState": false,
+            "collapsible": true,
+            "active": true
+        }}'>
+        <span data-role="title" class="toggle"><!-- ko i18n: 'Personalisation options' --><!-- /ko --></span>
+        <div data-role="content" class="content">
+            <p class="section-title"><?= __('Front view') ?></p>
+            <dl class="item-options">
+                <?php if($psnData['front_text']): ?>
+                    <dt><?=__('Text')?></dt><dd><?= $psnData['front_text'] ?></dd>
+                    <dt><?=__('Typeface')?></dt><dd><?= $psnData['front_font'] ?></dd>
+                    <dt><?=__('Orientation')?></dt><dd><?= __($psnData['front_orientation'])?></dd>
+                <?php endif ?>
+                <?php if($psnData['front_pattern']): ?>
+                <dt><?=__('Pattern')?></dt><dd><?= $psnData['front_pattern'] ?></dd>
+                <?php endif ?>
+                <?php if($psnData['front_icon']): ?>
+                <dt><?=__('Icon')?></dt><dd><?= $psnData['front_icon'] ?></dd>
+                <?php endif ?>
+            </dl>
+            <?php if( $psnData['back_text']): ?>
+            <p class="section-title"><?= __('Back view') ?></p>
+            <dl class="item-options">
+                <dt><?=__('Text') ?></dt><dd><?= $psnData['back_text'] ?></dd>
+                <dt><?=__('Typeface') ?></dt><dd><?= $psnData['back_font'] ?></dd>
+                <dt><?=__('Orientation') ?></dt><dd><?= __($psnData['back_orientation']) ?></dd>
+                <dt style="display: none"><?=__('Personalisation price')?></dt><dd style="display: none"><?= $psnData['personalisation_price'] ?></dd>
+            </dl>
+            <?php endif ?>
+        </div>
+    </div>
+<?php endif; ?>

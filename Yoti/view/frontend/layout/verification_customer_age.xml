@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<page layout="empty" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<css src="BAT_Yoti::css/yoti-face-capture.css" rel="stylesheet" type="text/css" media="all" />
+	</head>
+	<body>
+		<referenceBlock name="entry_age_confirmation_script" remove="true" />
+		<referenceBlock name="entry_age_confirmation" remove="true" />
+		<referenceBlock name="cookie.icon" remove="true" />
+		<referenceBlock name="page.main.title" remove="true" />
+		<referenceBlock name="widget_float" remove="true" />
+
+		<referenceContainer name="content">
+			<block name="yoti.customer.age"
+				   template="BAT_Yoti::customer/age.phtml"
+				   cacheable="false"
+				   ifconfig="age_verification/yoti_age_scan/enabled">
+                <arguments>
+                    <argument name="age_data_provider" xsi:type="object">BAT\Yoti\ViewModel\AgeProvider</argument>
+                </arguments>
+            </block>
+		</referenceContainer>
+	</body>
+</page>

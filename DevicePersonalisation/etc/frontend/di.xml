@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Quote\Api\CartRepositoryInterface">
+        <plugin name="bat_device_personalisation_quote_repository" type="BAT\DevicePersonalisation\Plugin\Quote\RepositoryPlugin" />
+    </type>
+</config>

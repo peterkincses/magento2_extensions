@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<page layout="empty" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceBlock name="entry_age_confirmation_script" remove="true" />
+		<referenceBlock name="entry_age_confirmation" remove="true" />
+		<referenceBlock name="cookie.icon" remove="true" />
+		<referenceBlock name="page.main.title" remove="true" />
+
+		<referenceContainer name="content">
+			<block name="yoti.customer.success"
+				   template="BAT_Yoti::customer/iframe-success.phtml"
+                   cacheable="false"
+				   ifconfig="age_verification/yoti_doc_scan/enabled">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">BAT\DynamicAEMLayout\ViewModel\AEMScript</argument>
+                </arguments>
+            </block>
+		</referenceContainer>
+	</body>
+</page>

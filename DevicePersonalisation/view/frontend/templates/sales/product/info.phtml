@@ -1,0 +1,35 @@
+<?php
+/** @var $block \BAT\DevicePersonalisation\Block\Product\Info */
+?>
+<?php $psnItem = $block->getPersonalisationInfo();?>
+<?php if (!empty($psnItem)):?>
+    <dl class="personalise-wrapping">
+        <dt class="title"><?= $block->escapeHtml(__('Personalisation')) ?></dt>
+        <dl>
+            <dt class="title"><?= $block->escapeHtml(__('Front')) ?></dt>
+            <dd class="content">
+                <?php if ($psnItem['front_pattern']): ?>
+                <p><?= $block->escapeHtml(__('Pattern')).": ".$block->escapeHtml($block->getFormated($psnItem['front_pattern'])) ?></p>
+                <?php endif; ?>
+                <?php if ($psnItem['front_icon']): ?>
+                <p><?= $block->escapeHtml(__('Icon')).": ".$block->escapeHtml($block->getFormated($psnItem['front_icon'])) ?></p>
+                <?php endif; ?>
+                <?php if ($psnItem['front_text']): ?>
+                <p><?= $block->escapeHtml(__('Typeface')).": ".$block->escapeHtml($block->getFormated($psnItem['front_font'])) ?></p>
+                <p><?= $block->escapeHtml(__('Text')).": ".$block->escapeHtml($block->getFormated($psnItem['front_text'])) ?></p>
+                <p><?= $block->escapeHtml(__('Orientation')).": ".$block->escapeHtml($block->getFormated(__($psnItem['front_orientation']))) ?></p>
+                <?php endif; ?>
+            </dd>
+        </dl>
+        <?php if ($psnItem['back_text']):?>
+        <dl>
+            <dt class="title" style="font-weight: 700; margin-top: 10px; margin-bottom: 0; padding-bottom: 0;"><?= $block->escapeHtml(__('Back')) ?></dt>
+            <dd class="content">
+                <p><?= $block->escapeHtml(__('Typeface')).": ".$block->escapeHtml($block->getFormated($psnItem['back_font'])) ?></p>
+                <p><?= $block->escapeHtml(__('Text')).": ".$block->escapeHtml($block->getFormated($psnItem['back_text'])) ?></p>
+                <p><?= $block->escapeHtml(__('Orientation')).": ".$block->escapeHtml($block->getFormated(__($psnItem['back_orientation']))) ?></p>
+            </dd>
+        </dl>
+        <?php endif; ?>
+    </dl>
+<?php endif; ?>

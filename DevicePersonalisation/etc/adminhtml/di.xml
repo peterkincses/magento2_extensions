@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\Reporting">
+        <plugin name="psn_patterns_grid_collection" type="BAT\DevicePersonalisation\Plugin\Patterns\Grid"/>
+    </type>
+    <type name="Magento\Ui\Model\Export\MetadataProvider">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="psn_mxreport_grid" xsi:type="array">
+                    <item name="order_date" xsi:type="string">order_date</item>
+                    <item name="shipping_date" xsi:type="string">shipping_date</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Ui\Model\Export\MetadataProvider">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="psn_report_grid" xsi:type="array">
+                    <item name="order_date" xsi:type="string">order_date</item>
+                    <item name="shipping_date" xsi:type="string">shipping_date</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Mageside\ShippingMatrixRates\Model\ResourceModel\Carrier\Import">
+        <plugin name="psn_patterns_carrier_import" type="BAT\DevicePersonalisation\Plugin\MatrixRates\ImportPlugin" />
+    </type>
+    <preference for="Mageside\ShippingMatrixRates\Block\Adminhtml\Carrier\Matrixrates\Grid" type="BAT\DevicePersonalisation\Model\Rewrite\MatrixRate\Block\Grid" />
+</config>

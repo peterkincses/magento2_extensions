@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="BAT\DevicePersonalisation\Api\PsnPatternsRepositoryInterface" type="BAT\DevicePersonalisation\Model\PsnPatternsRepository" />
+    <preference for="BAT\DevicePersonalisation\Api\Data\PsnPatternInterface" type="BAT\DevicePersonalisation\Model\PsnPatterns" />
+    <preference for="BAT\DevicePersonalisation\Api\Data\PsnItemDataInterface" type="BAT\DevicePersonalisation\Model\PsnItem" />
+    <preference for="BAT\DevicePersonalisation\Api\Data\PsnPatternsSearchResultsInterface" type="BAT\DevicePersonalisation\Model\PsnPatternsSearchResults" />
+    <preference for="BAT\DevicePersonalisation\Api\Data\PsnItemSearchResultsInterface" type="BAT\DevicePersonalisation\Model\PsnItemSearchResults" />
+    <preference for="BAT\DevicePersonalisation\Api\PsnItemRepositoryInterface" type="BAT\DevicePersonalisation\Model\PsnItemRepository" />
+
+    <preference for="BAT\DevicePersonalisation\Api\PsnFontsRepositoryInterface" type="BAT\DevicePersonalisation\Model\PsnFontsRepository" />
+    <preference for="BAT\DevicePersonalisation\Api\Data\PsnFontsInterface" type="BAT\DevicePersonalisation\Model\PsnFonts" />
+    <preference for="BAT\DevicePersonalisation\Api\Data\PsnFontsSearchResultsInterface" type="BAT\DevicePersonalisation\Model\PsnFontsSearchResults" />
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="personalisation_fonts_list_data_source"
+                      xsi:type="string">BAT\DevicePersonalisation\Model\ResourceModel\PsnFonts\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="BAT\DevicePersonalisation\Model\ResourceModel\PsnFonts\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">psn_fonts</argument>
+            <argument name="eventPrefix" xsi:type="string">psn_fonts_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">psn_fonts_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">BAT\DevicePersonalisation\Model\ResourceModel\PsnFonts</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="BAT\DevicePersonalisation\FontUpload" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">BAT\DevicePersonalisation\Ui\Component\Fonts\Edit\DataProvider::UPLOAD_PATH</argument>
+            <argument name="basePath" xsi:type="const">BAT\DevicePersonalisation\Ui\Component\Fonts\Edit\DataProvider::UPLOAD_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="woff" xsi:type="string">woff</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="BAT\DevicePersonalisation\Controller\Adminhtml\Fonts\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">BAT\DevicePersonalisation\FontUpload</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="personalisation_patterns_list_data_source"
+                      xsi:type="string">BAT\DevicePersonalisation\Model\ResourceModel\PsnPatterns\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="BAT\DevicePersonalisation\Model\ResourceModel\PsnPatterns\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">psn_patterns</argument>
+            <argument name="eventPrefix" xsi:type="string">psn_patterns_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">psn_patterns_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">BAT\DevicePersonalisation\Model\ResourceModel\PsnPatterns</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="BAT\DevicePersonalisation\PatternUpload" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">BAT\DevicePersonalisation\Ui\Component\Patterns\Edit\DataProvider::UPLOAD_PATH</argument>
+            <argument name="basePath" xsi:type="const">BAT\DevicePersonalisation\Ui\Component\Patterns\Edit\DataProvider::UPLOAD_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="BAT\DevicePersonalisation\Controller\Adminhtml\Patterns\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">BAT\DevicePersonalisation\PatternUpload</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="BAT\DevicePersonalisation\PatternThumbnailUpload" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">BAT\DevicePersonalisation\Ui\Component\Patterns\Edit\DataProvider::UPLOAD_PATH_THUMBNAIL</argument>
+            <argument name="basePath" xsi:type="const">BAT\DevicePersonalisation\Ui\Component\Patterns\Edit\DataProvider::UPLOAD_PATH_THUMBNAIL</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="BAT\DevicePersonalisation\Controller\Adminhtml\Patterns\ThumbnailUpload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">BAT\DevicePersonalisation\PatternThumbnailUpload</argument>
+        </arguments>
+    </type>
+
+    <preference for="BAT\DevicePersonalisation\Api\Data\PsnIconDataInterface" type="BAT\DevicePersonalisation\Model\PsnIcon" />
+    <preference for="BAT\DevicePersonalisation\Api\PsnIconRepositoryInterface" type="BAT\DevicePersonalisation\Model\PsnIconRepository" />
+    <preference for="BAT\DevicePersonalisation\Api\Data\PsnIconSearchResultsInterface" type="BAT\DevicePersonalisation\Model\PsnIconSearchResults" />
+    <preference for="BAT\DevicePersonalisation\Api\Data\PsnRestrictedWordsInterface" type="BAT\DevicePersonalisation\Model\PsnRestrictedWords" />
+    <preference for="BAT\DevicePersonalisation\Api\PsnRestrictedWordsRepositoryInterface" type="BAT\DevicePersonalisation\Model\PsnRestrictedWordsRepository" />
+    <preference for="BAT\DevicePersonalisation\Api\Data\PsnRestrictedWordsSearchResultsInterface" type="BAT\DevicePersonalisation\Model\PsnRestrictedWordsSearchResults" />
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="psn_icon_grid_data_source" xsi:type="string">BAT\DevicePersonalisation\Model\ResourceModel\PsnIcon\Grid\Collection</item>
+                <item name="psn_restricted_words_grid_data_source" xsi:type="string">BAT\DevicePersonalisation\Model\ResourceModel\PsnRestrictedWords\Grid\Collection</item>
+                <item name="psn_report_grid_data_source" xsi:type="string">BAT\DevicePersonalisation\Model\ResourceModel\PsnItem\Grid\Collection</item>
+                <item name="psn_mxreport_grid_data_source" xsi:type="string">BAT\DevicePersonalisation\Model\ResourceModel\PsnReport\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="BAT\DevicePersonalisation\Model\ResourceModel\PsnIcon\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">psn_icons</argument>
+            <argument name="eventPrefix" xsi:type="string">psn_icons_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">icons_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">BAT\DevicePersonalisation\Model\ResourceModel\PsnIcon</argument>
+        </arguments>
+    </type>
+
+    <type name="BAT\DevicePersonalisation\Model\ResourceModel\PsnItem\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">psn_item</argument>
+            <argument name="eventPrefix" xsi:type="string">psn_item_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">item_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">BAT\DevicePersonalisation\Model\ResourceModel\PsnItem</argument>
+        </arguments>
+    </type>
+
+    <type name="BAT\DevicePersonalisation\Model\ResourceModel\PsnReport\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">psn_item</argument>
+            <argument name="eventPrefix" xsi:type="string">psn_report_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">psn_report_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">BAT\DevicePersonalisation\Model\ResourceModel\PsnItem</argument>
+        </arguments>
+    </type>
+
+    <type name="BAT\DevicePersonalisation\Controller\Adminhtml\Icon\Uploader">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">BAT\DevicePersonalisation\ReferenceImageUpload</argument>
+        </arguments>
+    </type>
+
+    <type name="BAT\DevicePersonalisation\Controller\Adminhtml\Icon\ThumbnailUploader">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">BAT\DevicePersonalisation\ReferenceThumbnailImageUpload</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="BAT\DevicePersonalisation\Api\Data\PsnIconDataInterface" xsi:type="array">
+                    <item name="update" xsi:type="array">
+                        <item name="iconStoreCreator" xsi:type="string">BAT\DevicePersonalisation\Model\ResourceModel\PsnIcon\Relation\Store\SaveHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="BAT\DevicePersonalisation\Api\Data\PsnIconDataInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="BAT\DevicePersonalisation\Api\Data\PsnIconDataInterface" xsi:type="string">BAT\DevicePersonalisation\Api\PsnIconRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="BAT\DevicePersonalisation\Api\Data\PsnIconDataInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">psn_icons</item>
+                    <item name="identifierField" xsi:type="string">icon_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="BAT\DevicePersonalisation\Ui\Component\DataProvider">
+        <arguments>
+            <argument name="additionalFilterPool" xsi:type="array">
+                <item name="fulltext" xsi:type="object">BAT\DevicePersonalisation\Ui\Component\DataProvider\Icons\AddFulltextFilterToCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="BAT\DevicePersonalisation\Ui\Component\DataProvider\RestrictedWord">
+        <arguments>
+            <argument name="addFilterStrategies" xsi:type="array">
+                <item name="fulltext" xsi:type="object">\BAT\DevicePersonalisation\Ui\Component\DataProvider\AddFulltextFilterToCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="BAT\DevicePersonalisation\ReferenceImageUpload" type="BAT\DevicePersonalisation\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">bat_device_personalisation/icons</argument>
+            <argument name="basePath" xsi:type="const">BAT\DevicePersonalisation\Model\ImageUploader::UPLOAD_IMAGE_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="BAT\DevicePersonalisation\ReferenceThumbnailImageUpload" type="BAT\DevicePersonalisation\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">bat_device_personalisation/icons/thumbnails</argument>
+            <argument name="basePath" xsi:type="const">BAT\DevicePersonalisation\Model\ImageUploader::UPLOAD_THUMBNAIL_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="BAT\DevicePersonalisation\Model\ResourceModel\PsnRestrictedWords\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">psn_restricted_words</argument>
+            <argument name="resourceModel" xsi:type="string">BAT\DevicePersonalisation\Model\ResourceModel\PsnRestrictedWords</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
+        <arguments>
+            <argument name="samples" xsi:type="array">
+                <item name="restricted_word" xsi:type="string">BAT_DevicePersonalisation</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Quote\Model\Quote">
+        <plugin name="psn_patterns_checkout_cart_add" type="BAT\DevicePersonalisation\Plugin\Checkout\QuotePlugin"/>
+    </type>
+    <type name="BAT\OrderFulfilment\Api\OrderValidationServiceInterface">
+        <plugin name="bat_devicepersonalisation_stop_psn_order" type="BAT\DevicePersonalisation\Plugin\OrderFulfilment\StopFulfilmentForOrderWithPsnItemPlugin"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\Gallery">
+        <plugin name="psn_patterns_block_product_view_gallery_json" type="BAT\DevicePersonalisation\Plugin\Block\Product\View\GalleryPlugin"/>
+    </type>
+    <type name="Magento\Checkout\CustomerData\DefaultItem">
+        <plugin name="psn_devicepersonalisation_add_to_customer_data" type="BAT\DevicePersonalisation\Plugin\Checkout\CustomerData\DefaultItem"/>
+    </type>
+    <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
+        <plugin name="bat_devicepersonalisation_add_psn_images_to_gallery"
+                type="BAT\DevicePersonalisation\Plugin\ConfigurableProduct\AddPsnImagesToGalleryPlugin"/>
+    </type>
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="psn_devicepersonalisation_add_to_summary_data" type="BAT\DevicePersonalisation\Plugin\Checkout\Model\DefaultConfigProvider" />
+    </type>
+    <type name="Magento\Quote\Model\Quote\Item">
+        <plugin name="psn_devicepersonalisation_quote_item_split" type="BAT\DevicePersonalisation\Plugin\Quote\SplitItemPlugin" />
+    </type>
+    <type name="Magento\Checkout\Model\Cart">
+        <plugin name="beforeAddingProductToCart" type="BAT\DevicePersonalisation\Plugin\Checkout\Cart"/>
+    </type>
+    <type name="BAT\OrderFulfilment\Model\Api\Request\OrderLineDataProvider">
+        <plugin name="bat_devicepersonalisation_add_personalization_data" type="BAT\DevicePersonalisation\Plugin\OrderFulfilment\OrderLineDataProviderPlugin"/>
+    </type>
+    <type name="BAT\DynamicBanner\Model\BannerTypes">
+        <arguments>
+            <argument name="types" xsi:type="array">
+                <item name="bat-pdp-device-personalisation" xsi:type="object">BAT\DevicePersonalisation\Model\DynamicBanner\PdpDeviceBannerType</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="bat_devicepersonalisation_sales_force_order_extension_attribute"
+                type="BAT\DevicePersonalisation\Plugin\OrderDataPlugin" />
+    </type>
+    <type name="Magento\Sales\Controller\AbstractController\Reorder">
+        <plugin name="bat_devicepersonalisation_sales_reorder_extension_attribute"
+                type="BAT\DevicePersonalisation\Plugin\Controller\ReorderPlugin" />
+    </type>
+    <type name="Magento\SalesRule\Model\Rule\Action\Discount\AbstractDiscount">
+        <plugin name="bat_devicepersonalisation_rule_abstract_discount"
+                type="BAT\DevicePersonalisation\Plugin\Rule\DiscountActionPlugin" />
+    </type>
+    <type name="Mageside\ShippingMatrixRates\Model\Carrier\Matrixrates">
+        <plugin name="bat-psn-rates-data-plugin"
+                type="BAT\DevicePersonalisation\Plugin\MatrixRates\MatrixRatesPlugin" />
+    </type>
+</config>

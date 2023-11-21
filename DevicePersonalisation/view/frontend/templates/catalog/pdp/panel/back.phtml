@@ -1,0 +1,94 @@
+<?php
+
+/**@var \BAT\DevicePersonalisation\ViewModel\Fonts $viewModel */
+$viewModel = $block->getData('view_model');
+$fonts = $viewModel->getFonts();
+$maxLengthHorizontal = $viewModel->getMaxCharHorizontal();;
+$maxLengthVertical = $viewModel->getMaxCharVertical();
+?>
+
+<div data-role="title" class="tab-content-title">
+    <?= __('Customise the back of your device') ?>
+</div>
+
+<div class="field">
+    <label>
+        <?= __('Pick your text direction') ?>
+    </label>
+    <div class="control personalisation-options select-first">
+        <div class="option personalisation-custom-radio">
+            <input type="radio" name="personalisation_back_text_direction"
+                   id="back_text_direction_vertical"
+                   class="personalisation-text-direction"
+                   value="vertical"
+                   data-area="back"
+                   data-max-length="<?= $maxLengthVertical ?>"
+                   data-input-label="<?= __('Orientation') ?>"
+                   data-input-value="<?= __('vertical') ?>" />
+            <label for="back_text_direction_vertical"><?= __('Vertical') ?></label>
+        </div>
+        <div class="option personalisation-custom-radio">
+            <input type="radio" name="personalisation_back_text_direction"
+                   id="back_text_direction_horizontal"
+                   class="personalisation-text-direction"
+                   value="horizontal"
+                   data-area="back"
+                   data-max-length="<?= $maxLengthHorizontal ?>"
+                   data-input-label="<?= __('Orientation') ?>"
+                   data-input-value="<?= __('horizontal') ?>" />
+            <label for="back_text_direction_horizontal"><?= __('Horizontal') ?></label>
+        </div>
+    </div>
+</div>
+
+<div class="field">
+    <label>
+        <?= __('Enter your text') ?>
+    </label>
+    <div class="control">
+        <div class="field">
+            <input type="text" name="personalisation_back_text"
+                   id="personalisation_back_text"
+                   class="personalisation-text-input"
+                   value
+                   data-area="back"
+                   data-save-button="#back-text-save"
+                   data-input-label="<?= __('Text') ?>"
+                   maxlength="<?= $maxLengthVertical ?>"
+                   data-validate='{"validate-no-html-tags": true, "psn-restricted-words": true, "psn-restricted-characters": true}' />
+        </div>
+        <p class="note"><?= __('Add up to <span class="limit"></span> characters') ?></p>
+    </div>
+</div>
+
+<div class="personalisation-options font-families select-first">
+    <?php foreach($fonts as $key => $font):?>
+        <?php $sanitisedFont =  strtolower(str_replace(' ','_', $font['name'])) ?>
+        <div class="option personalisation-custom-radio font">
+            <input type="radio" name="personalisation_back_text_font_family"
+                   id="back_text_font_family_<?= $key ?>"
+                   class="personalisation-font-family"
+                   value="<?= $block->escapeHtml($font['name']) ?>"
+                   data-area="back"
+                   data-input-label="<?= __('Typeface') ?>"
+                   data-font-class="<?= $sanitisedFont ?>" />
+            <label for="back_text_font_family_<?= $key ?>">
+                <span class="img-wrap">
+                    <span class="font-preview <?= $sanitisedFont ?>"><?= __($font['preview_text']) ?></span>
+                </span>
+                <span class="option-title"><?= $font['name'] ?></span>
+            </label>
+        </div>
+    <?php endforeach ?>
+</div>
+
+<div class="action-toolbar">
+    <button id="back-text-save" class="action primary tab-toggle save" data-target-tab="2" disabled>
+        <?= __('Add and continue') ?>
+    </button>
+
+    <!-- go to summary -->
+    <a href="#" class="tab-toggle clear-selection with-arrow" data-target-tab="2" data-clear-area="back">
+        <?= __('I don\'t want to customise the back') ?>
+    </a>
+</div>

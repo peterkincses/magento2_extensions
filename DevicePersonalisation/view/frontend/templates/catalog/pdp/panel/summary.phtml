@@ -1,0 +1,92 @@
+<?php
+/**
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+<?php
+$_product = $block->getProduct();
+$viewModel = $block->getData('view_model');
+?>
+<div data-role="title" class="tab-content-title">
+    <?= __('The summary')?>
+</div>
+
+<div class="summary">
+    <table>
+        <thead>
+           <th><?= __('Image') ?></th>
+           <th colspan="2"><?= __('Customisation details') ?></th>
+           <th><?= __('Actions') ?></th>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="image">
+                    <div class="img-wrap">
+                        <?= $block->getImage($_product, 'mini_cart_product_thumbnail')->toHtml(); ?>
+                    </div>
+                </td>
+                <td class="details">
+                    <p class="row-title"><?= $_product->getName() ?></p>
+                </td>
+                <td></td>
+            </tr>
+            <tr id="summary-front">
+                <td class="image">
+                    <div class="img-wrap"></div>
+                </td>
+                <td class="details">
+                    <p class="row-title"><?= __('Front view') ?></p>
+                    <dl></dl>
+                    <p class="error message hide"><?= __('You have an error in this field, please correct or delete your selection before you can continue with your purchase.') ?></p>
+
+                    <div class="actions">
+                        <a href="#" class="edit tab-toggle" data-target-tab="0"><?= __('Edit')?></a>
+                        <span>|</span>
+                        <a href="#" class="remove clear-selection" data-clear-area="front"><span><?= __('Remove')?></span></a>
+                    </div>
+                </td>
+                <td class="actions">
+                    <a href="#" class="edit tab-toggle" data-target-tab="0"><?= __('Edit')?></a>
+                    <span class="desktop-only">|</span>
+                    <a href="#" class="remove clear-selection" data-clear-area="front"><span><?= __('Remove')?></span></a>
+                </td>
+            </tr>
+            <tr id="summary-back">
+                <td class="image">
+                    <div class="img-wrap"></div>
+                </td>
+                <td class="details">
+                    <p class="row-title"><?= __('Back view') ?></p>
+                    <dl></dl>
+                    <p class="error message hide"><?= __('You have an error in this field, please correct or delete your selection before you can continue with your purchase.') ?></p>
+
+                    <div class="actions">
+                        <a href="#" class="edit tab-toggle" data-target-tab="1"><?= __('Edit')?></a>
+                        <span>|</span>
+                        <a href="" class="remove clear-selection" data-clear-area="back"><span><?= __('Remove')?></span></a>
+                    </div>
+                </td>
+                <td class="actions">
+                    <a href="#" class="edit tab-toggle" data-target-tab="1"><?= __('Edit')?></a>
+                    <span class="desktop-only">|</span>
+                    <a href="" class="remove clear-selection" data-clear-area="back"><span><?= __('Remove')?></span></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<p class="disclaimer">
+    <small>
+        <?= $viewModel->getPersonalisationProductDisclaimer() ?>
+    </small>
+</p>
+
+
+<p class="psn-summary-default-price-notice message notice">
+    <?= __('Since you haven\'t selected any personalisation options, you will be charged the default price.')?>
+</p>
+
+<div class="psn-summary-price psn-summary-price--default"></div>
+<div class="psn-summary-price psn-summary-price--personalised"></div>

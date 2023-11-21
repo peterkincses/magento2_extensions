@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="BAT_DevicePersonalisation::personalisation"
+            title="Personalisation"
+            module="BAT_DevicePersonalisation"
+            sortOrder="100"
+            resource="BAT_DevicePersonalisation::personalisation"
+            parent="Magento_Catalog::catalog"/>
+        <add id="BAT_DevicePersonalisation::pattern"
+             title="Patterns"
+             module="BAT_DevicePersonalisation"
+             sortOrder="100"
+             action="bat_personalisation/patterns/grid"
+             resource="BAT_DevicePersonalisation::pattern"
+             parent="BAT_DevicePersonalisation::personalisation"/>
+        <add id="BAT_DevicePersonalisation::icon"
+            title="Icons"
+            module="BAT_DevicePersonalisation"
+            sortOrder="200"
+            action="bat_personalisation/icon/index"
+            resource="BAT_DevicePersonalisation::icon"
+            parent="BAT_DevicePersonalisation::personalisation"/>
+        <add id="BAT_DevicePersonalisation::restricted_word"
+             title="Restricted Words"
+             module="BAT_DevicePersonalisation"
+             sortOrder="200"
+             resource="BAT_DevicePersonalisation::restricted_word"
+             parent="BAT_DevicePersonalisation::personalisation"
+             action="bat_personalisation/restrictedwords/index"/>
+        <add id="BAT_DevicePersonalisation::psn_report" title="Personalisation Sales Report"
+             translate="title" module="BAT_DevicePersonalisation" sortOrder="65"
+             parent="Magento_Reports::report_salesroot" action="bat_personalisation/report/index"
+             resource="BAT_DevicePersonalisation::psn_report"/>
+        <add id="BAT_DevicePersonalisation::psn_mxreport" title="Engraving Sales Report"
+             translate="title" module="BAT_DevicePersonalisation" sortOrder="66"
+             parent="Magento_Reports::report_salesroot" action="bat_personalisation/report/mxindex"
+             resource="BAT_DevicePersonalisation::psn_mxreport"/>
+        <add id="BAT_DevicePersonalisation::font"
+             title="Fonts"
+             module="BAT_DevicePersonalisation"
+             sortOrder="100"
+             action="bat_personalisation/fonts/grid"
+             resource="BAT_DevicePersonalisation::font"
+             parent="BAT_DevicePersonalisation::personalisation"/>
+    </menu>
+</config>

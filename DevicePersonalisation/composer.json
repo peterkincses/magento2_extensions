@@ -1,0 +1,17 @@
+{
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "BAT\\DevicePersonalisation\\": ""
+    }
+  },
+  "description": "Device Personalisation Module",
+  "license": [
+    "proprietary"
+  ],
+  "name": "BAT/module-devicepersonalisation",
+  "type": "magento2-module",
+  "version": "1.0.0"
+}

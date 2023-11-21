@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <age_verification>
+            <yoti_age_scan>
+                <enabled>0</enabled>
+                <api_url></api_url>
+                <auth_url></auth_url>
+                <auth_username></auth_username>
+                <auth_password></auth_password>
+                <is_live>0</is_live>
+                <cutomer_reference></cutomer_reference>
+                <country_code></country_code>
+                <api_timeout>30</api_timeout>
+                <min_age>18</min_age>
+                <uncertainty>3</uncertainty>
+                <attempts_allowed>2</attempts_allowed>
+                <max_file_size_allowed>1536</max_file_size_allowed>
+                <debug>0</debug>
+                <language_code>en</language_code>
+            </yoti_age_scan>
+            <yoti_doc_scan>
+                <enabled>0</enabled>
+                <min_age>18</min_age>
+                <locale></locale>
+                <attempts_allowed>1</attempts_allowed>
+                <integration_type>pnp</integration_type>
+            </yoti_doc_scan>
+            <yoti_old_account_av>
+                <enabled>0</enabled>
+                <start_date/>
+                <end_date/>
+                <subscription_pause_enabled>0</subscription_pause_enabled>
+            </yoti_old_account_av>
+            <accountdelete>
+                <enable>0</enable>
+                <accdel />
+            </accountdelete>
+        </age_verification>
+    </default>
+</config>

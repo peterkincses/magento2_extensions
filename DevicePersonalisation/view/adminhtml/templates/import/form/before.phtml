@@ -1,0 +1,12 @@
+<?php
+/** @var $block \Magento\Backend\Block\Template */
+?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "BAT_DevicePersonalisation/js/store-download": {
+                "downloadUrl": "<?=$block->escapeUrl($block->getUrl('bat_personalisation/restrictedwords/download/'))?>"
+            }
+        }
+    }
+</script>

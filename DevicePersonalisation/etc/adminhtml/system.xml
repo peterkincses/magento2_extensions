@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="bat_device_personalisation" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Device Personalisation</label>
+            <tab>bat</tab>
+            <resource>BAT_DevicePersonalisation::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="fullfill_report_enabled" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Order Fulfilment Report</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="prevent_fulfilment" translate="label comment" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Prevent Fulfilment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If set to yes then orders with personalised items will not be sent to fulfilment</comment>
+                </field>
+                <field id="personalisation_reorder_required" translate="label" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Personalisation Reorder Required</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>This setting confirms if the personalisation product can be re-ordered or not for the selected store.</comment>
+                </field>
+                <field id="message_after_removing_personalisation" translate="label" type="textarea" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message after removing personalisation</label>
+                    <depends>
+                        <field id="*/*/personalisation_reorder_required">1</field>
+                    </depends>
+                    <comment>This message will appear after removing personalisation product when re-ordering.</comment>
+                </field>
+            </group>
+            <group id="validation" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Validation</label>
+                <field id="max_characters_horizontal" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Maximum horizontal characters</label>
+                    <comment>When in a horizontal orientation limit characters to this number</comment>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="*/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="max_characters_vertical" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Maximum vertical characters</label>
+                    <comment>When in a vertical orientation limit characters to this number</comment>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="*/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="regex" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Regular Expression</label>
+                    <comment>If present ensures any text matches this regex. Leave blank for no matching</comment>
+                    <depends>
+                        <field id="*/general/enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="pricing" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Pricing</label>
+                <field id="price" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Price</label>
+                    <comment>The price of the personalisation</comment>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="*/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="special_price" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Special Price</label>
+                    <comment>If present this price will be used, and the price above will be shown struck-through</comment>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="*/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="free_engraving_enabled" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Free Engraving</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="free_engraving_customer_segments" translate="label" type="multiselect" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Free Engraving Customer Segments</label>
+                    <source_model>BAT\DevicePersonalisation\Model\Config\Source\CustomerSegments</source_model>
+                    <depends>
+                        <field id="*/general/enable">1</field>
+                        <field id="*/pricing/free_engraving_enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="disclaimer" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>PDP Disclaimer</label>
+                <field id="copy" translate="label comment" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disclaimer copy</label>
+                    <comment>This text is displayed at the bottom of the personalisation summary section</comment>
+                    <depends>
+                        <field id="*/general/enable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

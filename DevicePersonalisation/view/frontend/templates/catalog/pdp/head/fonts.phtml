@@ -1,0 +1,40 @@
+<?php
+/**
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+?>
+<!--
+We are referencing these custom fonts via inline styles because:
+ - styles added via .less files will be merged and inherited by every theme and page
+   which would unnecessarily bloat their output.
+ - these fonts should be conditional:
+      - on whether the BAT_DevicePersonalisation module is enabled
+      - on the store's personalisation config
+      - whether the product is "personalisable"
+-->
+<?php
+$_product = $block->getProduct();
+$mediaUrl = $this->helper('\Magento\Cms\Helper\Wysiwyg\Images')->getBaseUrl();
+?>
+
+<?php if($_product->getPsnIsPersonalisable()):?>
+    <?php
+    /**@var \BAT\DevicePersonalisation\ViewModel\Fonts $viewModel */
+    $viewModel = $block->getData('view_model');
+    $fontFamilies = $viewModel->getFonts();
+    ?>
+    <style>
+        <?php foreach($fontFamilies as $fontFamily):?>
+        <?php $sanitisedName = strtolower(str_replace(' ','_',$fontFamily['name']))?>
+            @font-face {
+                font-family: '<?= $fontFamily['name'] ?>';
+                font-style: normal;
+                font-weight: 400;
+                font-display: swap;
+                src: url(<?= $fontFamily['font_file'] ?>) format('woff');
+            }
+            .<?= $sanitisedName ?> { font-family: '<?= $fontFamily['name'] ?>'; <?php echo (isset($fontFamily['font_size']) && !empty($fontFamily['font_size']) ? 'font-size: ' . $fontFamily['font_size'] . '%;' : '') ?>  }
+        <?php endforeach; ?>
+    </style>
+<?php endif; ?>

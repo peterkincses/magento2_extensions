@@ -1,0 +1,31 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+  .product-items {
+    .product-item-photo {
+      position: relative;
+    }
+    button.personalise {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      box-sizing: border-box;
+      background: @personalisation__plp__psn_button__background-color;
+      color: @personalisation__plp__psn_button__text-color;
+      border-radius: @personalisation__plp__psn_button__border-radius;
+      min-width: @personalisation__plp__psn_button__min-width;
+      padding: @personalisation__plp__psn_button__padding;
+      border: 0;
+      z-index: @z-index-1;
+      span {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+    }
+  }
+}

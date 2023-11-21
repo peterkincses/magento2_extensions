@@ -1,0 +1,48 @@
+<?php
+$_product = $block->getProduct();
+?>
+
+<div class="front-options">
+    <div data-role="title" class="tab-content-title">
+        <?= __('Customise the front of your device')?>
+    </div>
+
+    <p><?= __('How would you like to customise the front of your device?')?></p>
+
+    <div class="personalisation-options">
+        <div class="option" data-target="front-pattern-content">
+            <label>
+                <span class="img-wrap">
+                    <img src="<?= $block->getViewFileUrl('BAT_DevicePersonalisation::images/option-pattern.png') ?>" />
+                </span>
+                <span class="option-title"><?= __('Psn patterns')?></span>
+            </label>
+        </div>
+        <div class="option" data-target="front-icon-content">
+            <label>
+                <span class="img-wrap">
+                    <img src="<?= $block->getViewFileUrl('BAT_DevicePersonalisation::images/option-icon.png') ?>" />
+                </span>
+                <span class="option-title"><?= __('Mini icons')?></span>
+            </label>
+        </div>
+        <div class="option" data-target="front-text-content">
+            <label>
+                <span class="img-wrap">
+                    <img src="<?= $block->getViewFileUrl('BAT_DevicePersonalisation::images/option-text.svg') ?>" />
+                </span>
+                <span class="option-title"><?= __('Text')?></span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<?= $block->getChildHtml('pdp.personalisation.panel.front.pattern') ?>
+<?= $block->getChildHtml('pdp.personalisation.panel.front.icon') ?>
+<?= $block->getChildHtml('pdp.personalisation.panel.front.text') ?>
+
+<div class="action-toolbar">
+    <a href="#" class="tab-toggle clear-selection with-arrow" data-target-tab="1" data-clear-area="front">
+        <?= __('Only customise the back')?>
+    </a>
+</div>

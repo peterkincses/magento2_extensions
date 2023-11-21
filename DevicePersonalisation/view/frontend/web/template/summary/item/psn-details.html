@@ -1,0 +1,39 @@
+<!-- ko if: hasPsnData($parent) -->
+<div class="psn-options">
+    <span data-role="title" class="toggle"><!-- ko i18n: 'Personalisation options' --><!-- /ko --></span>
+    <div data-role="content" class="content">
+        <span class="psn-area" data-bind="i18n: 'Front'"></span>
+        <dl class="product options list default"
+            data-bind="foreach: { data: getPsnData($parent), as: 'psnData' }">
+            <!-- ko if: psnData.front_text.length-->
+            <dt data-bind="i18n: 'Text'"></dt>
+            <dd data-bind="text: psnData.front_text"></dd>
+            <dt data-bind="i18n: 'Typeface'"></dt>
+            <dd data-bind="text: psnData.front_font"></dd>
+            <dt data-bind="i18n: 'Orientation'"></dt>
+            <dd data-bind="text: psnData.front_orientation"></dd>
+            <!-- /ko -->
+            <!-- ko if: psnData.front_pattern.length-->
+            <dt data-bind="i18n: 'Pattern'"></dt>
+            <dd data-bind="text: psnData.front_pattern"></dd>
+            <!-- /ko -->
+            <!-- ko if: psnData.front_icon.length-->
+            <dt data-bind="i18n: 'Icon'"></dt>
+            <dd data-bind="text: psnData.front_icon"></dd>
+            <!-- /ko -->
+        </dl>
+        <!-- if(psnData.back_text.length)-->
+        <span class="psn-area" data-bind="i18n: 'Back'"></span>
+        <dl class="product options list default"
+            data-bind="foreach: { data: getPsnData($parent), as: 'psnData', afterRender: initCollapsible }">
+            <dt data-bind="i18n: 'Text'"></dt>
+            <dd data-bind="text: psnData.back_text"></dd>
+            <dt data-bind="i18n: 'Typeface'"></dt>
+            <dd data-bind="text: psnData.back_font"></dd>
+            <dt data-bind="i18n: 'Orientation'"></dt>
+            <dd data-bind="text: psnData.back_orientation"></dd>
+        </dl>
+        <!-- /ko -->
+    </div>
+</div>
+<!-- /ko -->

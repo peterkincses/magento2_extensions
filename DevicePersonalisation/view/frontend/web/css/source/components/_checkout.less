@@ -1,0 +1,101 @@
+//
+  //  Common
+  //  _____________________________________________
+
+& when (@media-common = true) {
+  .minicart-items {
+    .psn-options {
+      margin-top: 10px;
+      .psn-section-title {
+        font-size: 12px;
+        margin-top: 5px;
+        display: block;
+      }
+      &.active {
+        .content {
+          display: block !important; // important is added to overwrite the plugin styles
+          dt {
+            font-size: 12px;
+            width: 50%;
+            float: left;
+            font-weight: 400;
+          }
+          dd {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+  .checkout-cart-index {
+    .cart.table-wrapper {
+      .cart.items.data.table {
+        .product-item-details {
+          .psn-options {
+            margin-bottom: 10px;
+            .toggle {
+              font-size: 13px;
+              cursor: pointer;
+              .lib-icon-font(
+                  @icon-down,
+                @_icon-font-size: 27px,
+                @_icon-font-line-height: 27px,
+                @_icon-font-text-hide: false,
+                @_icon-font-margin: 3px 0 0,
+                @_icon-font-position: after,
+                @_icon-font-display: block
+              );
+            }
+            .section-title {
+              font-size: 12px;
+              border-bottom: 1px solid grey;
+              display: inline-block;
+            }
+            .item-options {
+              display: block;
+              margin-top: 0;
+              dt {
+                display: inline-block;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .opc-sidebar {
+    .minicart-items {
+      .psn-options {
+        .product.options {
+          .lib-vendor-prefix-display(flex);
+          flex-flow: wrap;
+          dt, dd {
+            .lib-vendor-prefix-display(inline-flex);
+            width: 50%;
+            box-sizing: border-box;
+            justify-content: start;
+            margin-bottom: 5px;
+          }
+        }
+      }
+      .psn-area {
+        font-size: 11px;
+      }
+    }
+  }
+}
+
+//
+//  Tablet
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .opc-sidebar {
+    .minicart-items {
+      .psn-options {
+        padding-left: 130px;
+      }
+    }
+  }
+}

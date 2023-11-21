@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <bat_device_personalisation>
+            <general>
+                <enabled>0</enabled>
+                <prevent_fulfilment>0</prevent_fulfilment>
+                <fullfill_report_enabled>0</fullfill_report_enabled>
+                <personalisation_reorder_required>0</personalisation_reorder_required>
+                <message_after_removing_personalisation>Personalised products have not been added to your basket. If you want to add a personalised product you can do it from the product page to proceed with the personalisation.</message_after_removing_personalisation>
+            </general>
+            <validation>
+                <max_characters_horizontal>3</max_characters_horizontal>
+                <max_characters_vertical>10</max_characters_vertical>
+                <regex>^[a-zA-Z0-9 ]+$</regex>
+            </validation>
+            <pricing>
+                <price></price>
+                <special_price></special_price>
+                <free_engraving_enabled>0</free_engraving_enabled>
+                <free_engraving_customer_segments/>
+            </pricing>
+            <disclaimer>
+                <copy>As each product is laser printed individually to meet your customisation guidelines, the design may vary slightly from what's pictured. Please note, personalised items are made to order and cannot be exchanged or returned.</copy>
+            </disclaimer>
+        </bat_device_personalisation>
+    </default>
+</config>

@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="yoti_email_age_verified_template" label="Age Verified" file="yoti_age_verified.html" type="html" module="BAT_Yoti" area="frontend"/>
+    <template id="yoti_email_age_unverified_template" label="Age Unverified" file="yoti_age_unverified.html" type="html" module="BAT_Yoti" area="frontend"/>
+</config>

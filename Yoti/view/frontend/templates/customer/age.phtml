@@ -1,0 +1,155 @@
+<?php
+/** @var BAT\Yoti\ViewModel\AgeProvider $ageDataProvider */
+$ageDataProvider = $block->getAgeDataProvider();
+$storeEmail =  $ageDataProvider->getStoreSupportEmail();
+?>
+<div class="yoti-logo-wrap">
+    <img src="<?= $block->getViewFileUrl('images/logo.svg')?>" alt="<?= __('Site Logo')?>" width="75" />
+</div>
+
+<div class="yoti-wrap" data-mage-init='{"BAT_Yoti/js/yoti-age-verification": {"yotiLangCode": "<?= $ageDataProvider->getLanguageCode() ?>", "yotiFaceCaptureAssetsPath": "<?= $block->getViewFileUrl('BAT_Yoti::js/face-capture-assets') ?>"}}'>
+    <div class="yoti-inner-wrap">
+        <section id="intro" class="yoti-intro">
+            <div class="container">
+                <h1 class="page-title"><?= __('Estimate your age using your face')?></h1>
+                <div class="instructions-list">
+                    <div class="list-item" data-qa="light-room">
+                        <img src="<?= $block->getViewFileUrl('BAT_Yoti::images/light-room.svg')?>" alt="<?= __('Find a light area')?>">
+                        <p id="light-room-text">
+                            <?= __('Find a light area') ?>
+                        </p>
+                    </div>
+                    <div class="list-item" data-qa="no-headwear">
+                        <img src="<?= $block->getViewFileUrl('BAT_Yoti::images/no-headwear.svg')?>" alt="<?= __('Remove any headwear')?>">
+                        <p id="no-headwear-text">
+                            <?= __('Remove hat to reduce shadow') ?>
+                        </p>
+                    </div>
+                    <div class="list-item" data-qa="glasses-on">
+                        <img src="<?= $block->getViewFileUrl('BAT_Yoti::images/glasses.svg')?>" alt="<?= __('Keep your glasses on')?>">
+                        <p id="glasses-on-text">
+                            <?= __('Keep your glasses on') ?>
+                        </p>
+                    </div>
+                </div>
+                <div class="conditions">
+                    <p class="you-will-be-asked-to">
+                        <?= __('You will be asked to enable camera access') ?>
+                    </p>
+                </div>
+                <button class="start-age-estimation action primary">
+                    <span><?= __('Start estimation') ?></span>
+                </button>
+            </div>
+        </section>
+        <section id="camera" class="hidden yoti-camera">
+            <div id="prepare-video">
+                <div class="container">
+                    <div class="timer-wrapper">
+                        <img src="<?= $block->getViewFileUrl('BAT_Yoti::images/ico-loading-spinner.svg') ?>" class="prepare-video__timer">
+                        <div class="section-title">
+                            <?= __('Preparing camera…') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="video-div" class="video-div hidden">
+                <button class="back-to-intro action primary">
+                    <img src="<?= $block->getViewFileUrl('BAT_Yoti::images/back-arrow.svg') ?>" />
+                    <span class="desktop-only"><?= __('Back') ?></span>
+                </button>
+                <div id="face-capture-module-root"></div>
+            </div>
+        </section>
+        <section id="preparing-result" class="hidden yoti-preparing-result">
+            <div class="timer-wrapper">
+                <img src="<?= $block->getViewFileUrl('BAT_Yoti::images/ico-loading-spinner.svg')?>" class="prepare-video__timer">
+                <div class="section-title">
+                    <?= __('Calculating your age…') ?>
+                </div>
+            </div>
+        </section>
+        <section id="result" class="hidden yoti-result">
+            <div class="container">
+                <div class="idscan-message">
+                    <p>
+                        <?= __('It seems we need additional confirmation.')?><br/>
+                        <?= __('We will need your identity document at this stage.') ?>
+                    </p>
+                    <button type="button" class="action primary yoti-upload-documents" data-mage-init='{"BAT_Yoti/js/yoti-docs-scan": {}}'>
+                        <span><?= __('Upload my documents') ?></span>
+                        <img src="<?= $block->getViewFileUrl('BAT_Yoti::images/ajax-loader.gif') ?>" width="15" />
+                    </button>
+                </div>
+                <div class="yoti-id-scan-error message error"></div>
+                <div class="yoti-id-scan-notice retry hidden">
+                    <div>
+                        <h2 class="page-title"><?= __('Thank you') ?></h2>
+                        <?= __('Please wait, we are processing your documents. It will take a maximum of 10 minutes. We ask you not to refresh this page or close this tab.') ?>
+                    </div>
+                    <img src="<?= $block->getViewFileUrl('BAT_Yoti::images/ajax-loader.gif') ?>" width="15" />
+                </div>
+                <div class="yoti-id-scan-notice no-retries hidden">
+                   <div>
+                       <?= __('We are very sorry however the maximum amount of requests have been exhausted and we have not been able to verify your details.') ?>
+                       <?= __('Please contact our <a href="mailto:%1">customer service</a> if you require assistance.', $storeEmail) ?>
+                   </div>
+                </div>
+                <div class="yoti-id-scan-notice status-3 hidden">
+                    <div>
+                        <?= __('Sorry, something went wrong. Please restart the doc scan process by clicking the button below or contact our <a href="mailto:%1">customer service</a> if you require assistance.', $storeEmail)?>
+                    </div>
+                    <button type="button" class="action primary yoti-upload-documents" data-mage-init='{"BAT_Yoti/js/yoti-docs-scan": {}}'>
+                        <span><?= __('Upload my documents') ?></span>
+                        <img src="<?= $block->getViewFileUrl('BAT_Yoti::images/ajax-loader.gif') ?>" width="15" />
+                    </button>
+                </div>
+                <div class="yoti-docs-scan-iframe" style="display: none;"></div>
+            </div>
+        </section>
+        <section id="bad-result" class="hidden yoti-bad-result">
+            <div class="container">
+                <h2 class="page-title"><?= __('Thank you') ?></h2>
+                <p>
+                    <?= __('Our customer service could not establish that you are over %1. You will now be redirected from our site in 10 seconds.', $minAge = 18) ?><br/>
+                </p>
+            </div>
+        </section>
+        <section id="error" class="hidden yoti-error">
+            <div class="container">
+                <div class="error-wrapper">
+                    <div class="warning-con-wrapper">
+                        <img src="<?= $block->getViewFileUrl('BAT_Yoti::images/warning.svg') ?>" alt="warning" class="warning-icon">
+                    </div>
+                    <div id="error-message"></div>
+                    <div id="error-hint"></div>
+                    <button id="retry-btn" type="button" class="restart action primary">
+                        <span><?= __('Start again') ?></span>
+                    </button>
+                    <button id="chat-btn" type="button" class="start-chat action primary hidden">
+                        <span><?= __('Contact us') ?></span>
+                    </button>
+                    <button id="email-btn" type="button" class="email action primary hidden">
+                        <span><?= __('Contact us') ?></span>
+                    </button>
+                    <button id="retry-doc-btn" type="button" class="action primary yoti-upload-documents hidden" data-mage-init='{"BAT_Yoti/js/yoti-docs-scan": {}}'>
+                        <span><?= __('Upload my documents') ?></span>
+                        <img src="<?= $block->getViewFileUrl('BAT_Yoti::images/ajax-loader.gif') ?>" width="15" />
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="yoti-security-notice">
+    <small><?= __('Documents and images will be automatically deleted after verification') ?></small>
+</div>
+<div class="yoti-disclaimer">
+    <img src="<?= $block->getViewFileUrl('BAT_Yoti::images/yoti-logo.svg') ?>" alt="Yoti Logo" width="50"/>
+    <span><small><?= __('Powered by Yoti') ?></small></span>
+</div>
+
+<div class="yoti-orientation-error">
+    <img src="<?= $block->getViewFileUrl('BAT_Yoti::images/orientation-error.svg') ?>" class="orientation-error__image" alt="Landscape">
+    <p class="please-turn-your-dev"><?= __('Please turn your device to portrait mode')?></p>
+</div>

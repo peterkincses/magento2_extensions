@@ -1,0 +1,155 @@
+{
+    "psn_fonts": {
+        "column": {
+            "font_id": true,
+            "name": true,
+            "preview": true,
+            "font_file": true,
+            "image": true,
+            "css_block": true,
+            "status": true,
+            "preview_text": true,
+            "font_size": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "psn_fonts_overrides": {
+        "column": {
+            "font_id": true,
+            "website_id": true,
+            "name": true,
+            "preview": true,
+            "store_id": true,
+            "image": true,
+            "status": true,
+            "preview_text": true,
+            "font_size": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "PSN_FONTS_OVERRIDES_FONT_ID_PSN_FONTS_FONT_ID": true,
+            "PSN_FONTS_OVERRIDES_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true,
+            "PSN_FONTS_OVERRIDES_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "psn_patterns": {
+        "column": {
+            "pattern_id": true,
+            "name": true,
+            "image": true,
+            "category_name": true,
+            "status": true,
+            "thumbnail": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "psn_patterns_overrides": {
+        "column": {
+            "pattern_id": true,
+            "website_id": true,
+            "name": true,
+            "store_id": true,
+            "category_name": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "PSN_PATTERNS_OVERRIDES_PATTERN_ID_PSN_PATTERNS_PATTERN_ID": true,
+            "PSN_PATTERNS_OVERRIDES_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true,
+            "PSN_PATTERNS_OVERRIDES_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "psn_patterns_categories": {
+        "column": {
+            "category_id": true,
+            "website_id": true,
+            "category_name": true,
+            "pattern_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "PSN_PATTERNS_CATEGORIES_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true,
+            "PSN_PATTERNS_CATEGORIES_PATTERN_ID_PSN_PATTERNS_PATTERN_ID": true
+        }
+    },
+    "psn_icons": {
+        "column": {
+            "icon_id": true,
+            "name": true,
+            "image": true,
+            "status": true,
+            "thumbnail": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "psn_icons_overrides": {
+        "column": {
+            "icon_id": true,
+            "website_id": true,
+            "name": true,
+            "store_id": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "PSN_ICONS_OVERRIDES_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true,
+            "PSN_ICONS_OVERRIDES_ICON_ID_PSN_ICONS_ICON_ID": true,
+            "PSN_ICONS_OVERRIDES_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "psn_restricted_words": {
+        "column": {
+            "word_id": true,
+            "website_id": true,
+            "restricted_word": true,
+            "store_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "PSN_RESTRICTED_WORDS_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true,
+            "PSN_RESTRICTED_WORDS_STORE_ID_STORE_STORE_ID": true
+        },
+        "index": {
+            "PSN_RESTRICTED_WORDS_STORE_ID": true
+        }
+    },
+    "psn_item": {
+        "column": {
+            "entity_id": true,
+            "order_item_id": true,
+            "quote_item_id": true,
+            "front_font": true,
+            "front_text": true,
+            "front_orientation": true,
+            "front_pattern": true,
+            "front_icon": true,
+            "back_font": true,
+            "back_text": true,
+            "back_orientation": true,
+            "personalisation_price": true,
+            "personalisation_tax": true,
+            "personalisation_is_free": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "PSN_ITEM_ORDER_ITEM_ID_SALES_ORDER_ITEM_ITEM_ID": true,
+            "PSN_ITEM_QUOTE_ITEM_ID_QUOTE_ITEM_ITEM_ID": true
+        }
+    },
+    "salesrule": {
+        "column": {
+            "psn_exclude_from_discount": true
+        }
+    },
+    "shipping_matrixrates": {
+        "column": {
+            "exclude_personalisation": true
+        }
+    }
+}

@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="head.additional">
+            <block name="pdp.personalisation.fonts"
+                   class="Magento\Catalog\Block\Product\View"
+                   template="BAT_DevicePersonalisation::catalog/pdp/head/fonts.phtml"
+                   ifconfig="bat_device_personalisation/general/enabled" >
+                <arguments>
+                    <argument name="view_model"
+                              xsi:type="object">BAT\DevicePersonalisation\ViewModel\Fonts</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="product.info.form.content">
+            <block name="pdp.personalisation.panel"
+                   class="Magento\Catalog\Block\Product\View"
+                   template="BAT_DevicePersonalisation::catalog/pdp/panel.phtml"
+                   ifconfig="bat_device_personalisation/general/enabled"
+                   before="product.info.addtocart">
+                <arguments>
+                    <argument name="view_model"
+                              xsi:type="object">BAT\DevicePersonalisation\ViewModel\Personalisation</argument>
+                    <argument name="restriction_view_model"
+                              xsi:type="object">BAT\DevicePersonalisation\ViewModel\RestrictedWords</argument>
+                </arguments>
+                <block name="pdp.personalisation.panel.toggle"
+                       template="BAT_DevicePersonalisation::catalog/pdp/panel/toggle.phtml">
+                    <arguments>
+                        <argument name="view_model"
+                                  xsi:type="object">BAT\DevicePersonalisation\ViewModel\Personalisation</argument>
+                    </arguments>
+                </block>
+                <block name="pdp.personalisation.panel.price"
+                       class="Magento\Catalog\Block\Product\View"
+                       template="BAT_DevicePersonalisation::catalog/pdp/panel/price.phtml">
+                    <arguments>
+                        <argument name="view_model"
+                                  xsi:type="object">BAT\DevicePersonalisation\ViewModel\Personalisation</argument>
+                        <argument name="price_view_model"
+                                  xsi:type="object">BAT\DevicePersonalisation\ViewModel\Price</argument>
+                    </arguments>
+                </block>
+                <block name="pdp.personalisation.panel.front" template="BAT_DevicePersonalisation::catalog/pdp/panel/front.phtml">
+                    <block name="pdp.personalisation.panel.front.pattern" template="BAT_DevicePersonalisation::catalog/pdp/panel/front/pattern.phtml" >
+                        <arguments>
+                            <argument name="view_model"
+                                      xsi:type="object">BAT\DevicePersonalisation\ViewModel\Patterns</argument>
+                        </arguments>
+                    </block>
+                    <block name="pdp.personalisation.panel.front.icon" template="BAT_DevicePersonalisation::catalog/pdp/panel/front/icon.phtml" >
+                        <arguments>
+                            <argument name="view_model"
+                                      xsi:type="object">BAT\DevicePersonalisation\ViewModel\Icons</argument>
+                        </arguments>
+                    </block>
+                    <block name="pdp.personalisation.panel.front.text" template="BAT_DevicePersonalisation::catalog/pdp/panel/front/text.phtml" >
+                        <arguments>
+                            <argument name="view_model"
+                                      xsi:type="object">BAT\DevicePersonalisation\ViewModel\Fonts</argument>
+                        </arguments>
+                    </block>
+                </block>
+                <block name="pdp.personalisation.panel.back" template="BAT_DevicePersonalisation::catalog/pdp/panel/back.phtml" >
+                    <arguments>
+                        <argument name="view_model"
+                                  xsi:type="object">BAT\DevicePersonalisation\ViewModel\Fonts</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Catalog\Block\Product\ListProduct"
+                       name="pdp.personalisation.panel.summary"
+                       template="BAT_DevicePersonalisation::catalog/pdp/panel/summary.phtml">
+                    <arguments>
+                        <argument name="view_model"
+                                  xsi:type="object">BAT\DevicePersonalisation\ViewModel\Personalisation</argument>
+                    </arguments>
+                </block>
+            </block>
+            <block name="pdp.personalisation.cancel"
+                   template="BAT_DevicePersonalisation::catalog/pdp/cancel.phtml"
+                   ifconfig="bat_device_personalisation/general/enabled"
+                   after="-" />
+        </referenceBlock>
+        <referenceContainer name="product.info.media">
+            <block name="pdp.personalisation.preview"
+                   class="Magento\Catalog\Block\Product\View"
+                   template="BAT_DevicePersonalisation::catalog/pdp/preview.phtml"
+                   before="product.info.media.image"
+                   ifconfig="bat_device_personalisation/general/enabled" />
+        </referenceContainer>
+    </body>
+</page>
